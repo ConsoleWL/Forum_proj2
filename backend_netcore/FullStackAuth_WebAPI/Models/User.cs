@@ -6,7 +6,7 @@ namespace FullStackAuth_WebAPI.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime? RegistrationDate { get; set; }
+        public DateTime RegistrationDate { get; set; }
 
         //Nav props
 

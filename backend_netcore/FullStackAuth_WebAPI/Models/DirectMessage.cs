@@ -10,7 +10,7 @@ namespace FullStackAuth_WebAPI.Models
 
         [MaxLength(200, ErrorMessage = "200 symbols max")]
         public string Text { get; set; }
-        public DateTime? MessageTime { get; set; }
+        public DateTime MessageTime { get; set; }
 
         //nav
         public string ToUserId { get; set; }

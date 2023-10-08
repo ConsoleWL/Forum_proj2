@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231008194928_Init")]
+    [Migration("20231008200744_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace FullStackAuth_WebAPI.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
-                    b.Property<DateTime?>("TimePosted")
+                    b.Property<DateTime>("TimePosted")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("TopicId")
@@ -77,7 +77,7 @@ namespace FullStackAuth_WebAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Commenta");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.DirectMessage", b =>
@@ -89,7 +89,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<string>("FromUserId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<DateTime?>("MessageTime")
+                    b.Property<DateTime>("MessageTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Text")
@@ -121,7 +121,7 @@ namespace FullStackAuth_WebAPI.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<DateTime?>("TimePosted")
+                    b.Property<DateTime>("TimePosted")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
@@ -186,7 +186,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<DateTime?>("RegistrationDate")
+                    b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("SecurityStamp")
@@ -239,13 +239,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aabadb5d-3006-4647-ad82-49690bbee389",
+                            Id = "6fe7af8c-2627-4ccb-a638-14e349b1325a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ca070311-25ee-49ad-9dee-223154138c2e",
+                            Id = "488a5d3d-68e9-4cce-a4a3-4a52276c27d5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

@@ -10,7 +10,7 @@ namespace FullStackAuth_WebAPI.DataTransferObjects
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-        public DateTime RegistrationData { get; set; }
+        public DateTime RegistrationDate { get; set; }
 
         public List<TopicForDispayDto> Topics { get; set; }
         public List<CommentForDisplayDto> Comments { get; set; }

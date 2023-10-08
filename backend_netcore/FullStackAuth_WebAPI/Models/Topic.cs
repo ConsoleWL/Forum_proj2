@@ -14,7 +14,7 @@ namespace FullStackAuth_WebAPI.Models
         [MaxLength(500)]
         public string Text { get; set; }
 
-        public DateTime? TimePosted { get; set; }
+        public DateTime TimePosted { get; set; }
         public int Likes { get; set; } = 0;
 
         // Nav props

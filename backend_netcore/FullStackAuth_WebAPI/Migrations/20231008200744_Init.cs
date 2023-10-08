@@ -39,7 +39,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     FirstName = table.Column<string>(type: "longtext", nullable: true),
                     LastName = table.Column<string>(type: "longtext", nullable: true),
-                    RegistrationDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
@@ -201,7 +201,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     DirectMessageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Text = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
-                    MessageTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    MessageTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     ToUserId = table.Column<string>(type: "varchar(255)", nullable: true),
                     FromUserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
@@ -229,7 +229,7 @@ namespace FullStackAuth_WebAPI.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
                     Text = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
-                    TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
@@ -245,27 +245,27 @@ namespace FullStackAuth_WebAPI.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Commenta",
+                name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Text = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
-                    TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: true),
                     TopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Commenta", x => x.CommentId);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Commenta_AspNetUsers_UserId",
+                        name: "FK_Comments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Commenta_Topics_TopicId",
+                        name: "FK_Comments_Topics_TopicId",
                         column: x => x.TopicId,
                         principalTable: "Topics",
                         principalColumn: "TopicId",
@@ -278,8 +278,8 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "aabadb5d-3006-4647-ad82-49690bbee389", null, "User", "USER" },
-                    { "ca070311-25ee-49ad-9dee-223154138c2e", null, "Admin", "ADMIN" }
+                    { "488a5d3d-68e9-4cce-a4a3-4a52276c27d5", null, "Admin", "ADMIN" },
+                    { "6fe7af8c-2627-4ccb-a638-14e349b1325a", null, "User", "USER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -325,13 +325,13 @@ namespace FullStackAuth_WebAPI.Migrations
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Commenta_TopicId",
-                table: "Commenta",
+                name: "IX_Comments_TopicId",
+                table: "Comments",
                 column: "TopicId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Commenta_UserId",
-                table: "Commenta",
+                name: "IX_Comments_UserId",
+                table: "Comments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -372,7 +372,7 @@ namespace FullStackAuth_WebAPI.Migrations
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "Commenta");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "DirectMessages");
