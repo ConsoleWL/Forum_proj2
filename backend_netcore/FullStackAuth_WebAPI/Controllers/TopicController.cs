@@ -125,7 +125,7 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         [HttpDelete("{id}"), Authorize]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteTopic(int id)
         {
             try
             {
