@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230621211652_init")]
-    partial class init
+    [Migration("20231008194928_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,95 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<DateTime?>("TimePosted")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("TopicId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("TopicId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Commenta");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.DirectMessage", b =>
+                {
+                    b.Property<int>("DirectMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("FromUserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("MessageTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Text")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("ToUserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("DirectMessageId");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("ToUserId");
+
+                    b.ToTable("DirectMessages");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Topic", b =>
+                {
+                    b.Property<int>("TopicId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime?>("TimePosted")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("TopicId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Topics");
                 });
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.User", b =>
@@ -96,6 +185,9 @@ namespace FullStackAuth_WebAPI.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("RegistrationDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
@@ -147,13 +239,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "59de2413-2986-49fa-a7ea-d2ee9bae8830",
+                            Id = "aabadb5d-3006-4647-ad82-49690bbee389",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "02826bcd-2b15-4c0a-8d85-281ade12b9b9",
+                            Id = "ca070311-25ee-49ad-9dee-223154138c2e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -270,6 +362,47 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Comment", b =>
+                {
+                    b.HasOne("FullStackAuth_WebAPI.Models.Topic", "Topic")
+                        .WithMany("Comments")
+                        .HasForeignKey("TopicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Topic");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.DirectMessage", b =>
+                {
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "FromUser")
+                        .WithMany("DirectMessagesFrom")
+                        .HasForeignKey("FromUserId");
+
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "ToUser")
+                        .WithMany("DirectMessagesTo")
+                        .HasForeignKey("ToUserId");
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("ToUser");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Topic", b =>
+                {
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
+                        .WithMany("Topics")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -319,6 +452,22 @@ namespace FullStackAuth_WebAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.Topic", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("FullStackAuth_WebAPI.Models.User", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("DirectMessagesFrom");
+
+                    b.Navigation("DirectMessagesTo");
+
+                    b.Navigation("Topics");
                 });
 #pragma warning restore 612, 618
         }

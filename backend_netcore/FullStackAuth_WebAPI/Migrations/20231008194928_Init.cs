@@ -9,7 +9,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,6 +39,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     FirstName = table.Column<string>(type: "longtext", nullable: true),
                     LastName = table.Column<string>(type: "longtext", nullable: true),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
@@ -193,13 +194,92 @@ namespace FullStackAuth_WebAPI.Migrations
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "DirectMessages",
+                columns: table => new
+                {
+                    DirectMessageId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
+                    MessageTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    ToUserId = table.Column<string>(type: "varchar(255)", nullable: true),
+                    FromUserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DirectMessages", x => x.DirectMessageId);
+                    table.ForeignKey(
+                        name: "FK_DirectMessages_AspNetUsers_FromUserId",
+                        column: x => x.FromUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_DirectMessages_AspNetUsers_ToUserId",
+                        column: x => x.ToUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Topics",
+                columns: table => new
+                {
+                    TopicId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
+                    Text = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
+                    TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Likes = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Topics", x => x.TopicId);
+                    table.ForeignKey(
+                        name: "FK_Topics_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Commenta",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
+                    TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Likes = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "varchar(255)", nullable: true),
+                    TopicId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Commenta", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_Commenta_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Commenta_Topics_TopicId",
+                        column: x => x.TopicId,
+                        principalTable: "Topics",
+                        principalColumn: "TopicId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "02826bcd-2b15-4c0a-8d85-281ade12b9b9", null, "Admin", "ADMIN" },
-                    { "59de2413-2986-49fa-a7ea-d2ee9bae8830", null, "User", "USER" }
+                    { "aabadb5d-3006-4647-ad82-49690bbee389", null, "User", "USER" },
+                    { "ca070311-25ee-49ad-9dee-223154138c2e", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -243,6 +323,31 @@ namespace FullStackAuth_WebAPI.Migrations
                 name: "IX_Cars_OwnerId",
                 table: "Cars",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Commenta_TopicId",
+                table: "Commenta",
+                column: "TopicId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Commenta_UserId",
+                table: "Commenta",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DirectMessages_FromUserId",
+                table: "DirectMessages",
+                column: "FromUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DirectMessages_ToUserId",
+                table: "DirectMessages",
+                column: "ToUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Topics_UserId",
+                table: "Topics",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -267,7 +372,16 @@ namespace FullStackAuth_WebAPI.Migrations
                 name: "Cars");
 
             migrationBuilder.DropTable(
+                name: "Commenta");
+
+            migrationBuilder.DropTable(
+                name: "DirectMessages");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Topics");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
