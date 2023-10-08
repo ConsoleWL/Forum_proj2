@@ -6,5 +6,13 @@ namespace FullStackAuth_WebAPI.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime? RegistrationDate { get; set; }
+
+        //Nav props
+
+        public List<Topic> Topics { get; set; }
+        public List<Comment> Comments { get; set; }
+        public List<DirectMessage> DirectMessagesFrom { get; set; }
+        public List<DirectMessage> DirectMessagesTo { get; set; }
     }
 }
