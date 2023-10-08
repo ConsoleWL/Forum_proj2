@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FullStackAuth_WebAPI.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace FullStackAuth_WebAPI.DataTransferObjects
 {
@@ -9,5 +10,10 @@ namespace FullStackAuth_WebAPI.DataTransferObjects
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
+        public DateTime RegistrationData { get; set; }
+
+        public List<TopicForDispayDto> Topics { get; set; }
+        public List<CommentForDisplayDto> Comments { get; set; }
+
     }
 }
