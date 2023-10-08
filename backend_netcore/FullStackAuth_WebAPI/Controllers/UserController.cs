@@ -19,15 +19,11 @@ namespace FullStackAuth_WebAPI.Controllers
             _context = context;
         }
 
-        [HttpGet("{id}"), Authorize]
-        public IActionResult Get(string id)
+        [HttpGet("{id}")]
+        public IActionResult GetUserData(string id)
         {
             try
             {
-                string userId = User.FindFirstValue("id");
-                if (string.IsNullOrEmpty(userId))
-                    return Unauthorized();
-
                 var user = _context.Users
                     .Include(t => t.Topics)
                     .Include(c => c.Comments)
@@ -36,15 +32,15 @@ namespace FullStackAuth_WebAPI.Controllers
                 if (user is null)
                     return NotFound();
 
-                var topics = _context.Topics.Include(u => u.User).Where(user => user.UserId == id).ToList();
-                var comments = _context.Comments.Where(user => user.UserId == id).ToList();
+                var topics = _context.Topics.Include(u => u.AuthorOfTopic).Where(user => user.AuthorOfTopicId == id).ToList();
+                var comments = _context.Comments.Where(user => user.CommentOfUserId == id).ToList();
 
                 var userDto = new UserForDisplayDto
                 {
                     Id = user.Id,
                     UserName = user.UserName,
                     RegistrationDate = user.RegistrationDate,
-                    Topics = topics.Select(t => new TopicForDispayDto
+                    Topics = topics.Select(t => new TopicForDisplayDto
                     {
                         TopicId = t.TopicId,
                         Title = t.Title,
@@ -58,9 +54,10 @@ namespace FullStackAuth_WebAPI.Controllers
                         Text = c.Text,
                         TimePosted = c.TimePosted,
                         Likes = c.Likes,
-                        User = new UserForDisplayDto
-                        {
-                            UserName = c.User.UserName
+                        CommentOfUser = new UserForDisplayDto
+                        {   
+                            Id = c.CommentOfUser.Id,
+                            UserName = c.CommentOfUser.UserName
                         },
 
                     }).ToList()

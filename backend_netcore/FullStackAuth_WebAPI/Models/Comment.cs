@@ -17,8 +17,8 @@ namespace FullStackAuth_WebAPI.Models
         //Nav props
 
         [ForeignKey("User")]
-        public string UserId { get; set; }
-        public User User { get; set; }
+        public string CommentOfUserId { get; set; }
+        public User CommentOfUser { get; set; }
 
 
         [ForeignKey("Topic")]

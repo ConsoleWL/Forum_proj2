@@ -2,7 +2,7 @@
 
 namespace FullStackAuth_WebAPI.DataTransferObjects
 {
-    public class TopicForDispayDto
+    public class TopicForDisplayDto
     {
         public int TopicId { get; set; }
         public string Title { get; set; }
@@ -11,7 +11,7 @@ namespace FullStackAuth_WebAPI.DataTransferObjects
         public string Text { get; set; }
 
 
-        public UserForDisplayDto User { get; set; }
+        public UserForDisplayDto AuthorOfTopic { get; set; }
         public List<CommentForDisplayDto> Comments { get; set; }
 
 

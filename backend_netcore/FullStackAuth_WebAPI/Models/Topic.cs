@@ -20,8 +20,8 @@ namespace FullStackAuth_WebAPI.Models
         // Nav props
 
         [ForeignKey("User")]
-        public string UserId { get; set; }
-        public User User { get; set; }
+        public string AuthorOfTopicId { get; set; }
+        public User AuthorOfTopic { get; set; }
 
         public List<Comment> Comments { get; set; }
     }

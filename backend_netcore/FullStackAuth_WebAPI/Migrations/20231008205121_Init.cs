@@ -278,8 +278,8 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "488a5d3d-68e9-4cce-a4a3-4a52276c27d5", null, "Admin", "ADMIN" },
-                    { "6fe7af8c-2627-4ccb-a638-14e349b1325a", null, "User", "USER" }
+                    { "930b819d-0715-4d0d-912f-ab7689cbc9f5", null, "User", "USER" },
+                    { "ee9918dd-03fe-424d-aa49-58fbf80b84fc", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

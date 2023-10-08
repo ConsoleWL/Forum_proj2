@@ -7,6 +7,6 @@
         public DateTime TimePosted { get; set; }
         public int Likes { get; set; }
 
-        public UserForDisplayDto User { get; set; }
+        public UserForDisplayDto CommentOfUser { get; set; }
     }
 }

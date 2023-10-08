@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231008200744_Init")]
+    [Migration("20231008205121_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -239,13 +239,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6fe7af8c-2627-4ccb-a638-14e349b1325a",
+                            Id = "930b819d-0715-4d0d-912f-ab7689cbc9f5",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "488a5d3d-68e9-4cce-a4a3-4a52276c27d5",
+                            Id = "ee9918dd-03fe-424d-aa49-58fbf80b84fc",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -370,13 +370,13 @@ namespace FullStackAuth_WebAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "CommentOfUser")
                         .WithMany("Comments")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Topic");
+                    b.Navigation("CommentOfUser");
 
-                    b.Navigation("User");
+                    b.Navigation("Topic");
                 });
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.DirectMessage", b =>
@@ -396,11 +396,11 @@ namespace FullStackAuth_WebAPI.Migrations
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Topic", b =>
                 {
-                    b.HasOne("FullStackAuth_WebAPI.Models.User", "User")
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "AuthorOfTopic")
                         .WithMany("Topics")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("AuthorOfTopic");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
