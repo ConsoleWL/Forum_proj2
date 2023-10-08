@@ -52,6 +52,9 @@ namespace FullStackAuth_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("CommentOfUserId")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
@@ -65,14 +68,11 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<int>("TopicId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
                     b.HasKey("CommentId");
 
-                    b.HasIndex("TopicId");
+                    b.HasIndex("CommentOfUserId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("TopicId");
 
                     b.ToTable("Comments");
                 });
@@ -111,6 +111,9 @@ namespace FullStackAuth_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AuthorOfTopicId")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
@@ -125,12 +128,9 @@ namespace FullStackAuth_WebAPI.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
                     b.HasKey("TopicId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AuthorOfTopicId");
 
                     b.ToTable("Topics");
                 });
@@ -236,13 +236,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "930b819d-0715-4d0d-912f-ab7689cbc9f5",
+                            Id = "9783eb83-329d-4781-b79c-5e0024c0fde0",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ee9918dd-03fe-424d-aa49-58fbf80b84fc",
+                            Id = "9c2d77e9-6c44-46da-b44f-6ea0af3a961d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -361,15 +361,15 @@ namespace FullStackAuth_WebAPI.Migrations
 
             modelBuilder.Entity("FullStackAuth_WebAPI.Models.Comment", b =>
                 {
+                    b.HasOne("FullStackAuth_WebAPI.Models.User", "CommentOfUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("CommentOfUserId");
+
                     b.HasOne("FullStackAuth_WebAPI.Models.Topic", "Topic")
                         .WithMany("Comments")
                         .HasForeignKey("TopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("FullStackAuth_WebAPI.Models.User", "CommentOfUser")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("CommentOfUser");
 
@@ -395,7 +395,7 @@ namespace FullStackAuth_WebAPI.Migrations
                 {
                     b.HasOne("FullStackAuth_WebAPI.Models.User", "AuthorOfTopic")
                         .WithMany("Topics")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("AuthorOfTopicId");
 
                     b.Navigation("AuthorOfTopic");
                 });

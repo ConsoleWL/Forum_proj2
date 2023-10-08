@@ -91,7 +91,7 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         [HttpPost, Authorize]
-        public IActionResult Post([FromBody] DirectMessage directMessage)
+        public IActionResult SendMessage([FromBody] DirectMessage directMessage)
         {
             try
             {

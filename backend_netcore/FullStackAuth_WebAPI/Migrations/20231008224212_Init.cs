@@ -231,14 +231,14 @@ namespace FullStackAuth_WebAPI.Migrations
                     Text = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
                     TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    AuthorOfTopicId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Topics", x => x.TopicId);
                     table.ForeignKey(
-                        name: "FK_Topics_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Topics_AspNetUsers_AuthorOfTopicId",
+                        column: x => x.AuthorOfTopicId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 })
@@ -253,15 +253,15 @@ namespace FullStackAuth_WebAPI.Migrations
                     Text = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
                     TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "varchar(255)", nullable: true),
+                    CommentOfUserId = table.Column<string>(type: "varchar(255)", nullable: true),
                     TopicId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Comments_AspNetUsers_CommentOfUserId",
+                        column: x => x.CommentOfUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -278,8 +278,8 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "930b819d-0715-4d0d-912f-ab7689cbc9f5", null, "User", "USER" },
-                    { "ee9918dd-03fe-424d-aa49-58fbf80b84fc", null, "Admin", "ADMIN" }
+                    { "9783eb83-329d-4781-b79c-5e0024c0fde0", null, "User", "USER" },
+                    { "9c2d77e9-6c44-46da-b44f-6ea0af3a961d", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -325,14 +325,14 @@ namespace FullStackAuth_WebAPI.Migrations
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_CommentOfUserId",
+                table: "Comments",
+                column: "CommentOfUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_TopicId",
                 table: "Comments",
                 column: "TopicId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserId",
-                table: "Comments",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DirectMessages_FromUserId",
@@ -345,9 +345,9 @@ namespace FullStackAuth_WebAPI.Migrations
                 column: "ToUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Topics_UserId",
+                name: "IX_Topics_AuthorOfTopicId",
                 table: "Topics",
-                column: "UserId");
+                column: "AuthorOfTopicId");
         }
 
         /// <inheritdoc />

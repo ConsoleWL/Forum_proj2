@@ -87,7 +87,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 if (existComment is null)
                     return NotFound();
 
-                if (comment.CommentOfUserId != userId)
+                if (existComment.CommentOfUserId != userId)
                     return Unauthorized();
 
                 existComment.Text = comment.Text;
