@@ -8,15 +8,9 @@ li {
   font-size: 1.25rem;
 }
 
-.navBar {
-  background: steelblue;
-  box-shadow: 4px 2px 5px gray;
-  color: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
-}
 
-.navBar button {
+
+/* .navBar button {
   background: transparent;
   border: 2px solid white;
   color: white;
@@ -27,9 +21,13 @@ li {
   background: white;
   color: steelblue;
   cursor: pointer;
-}
+} */
 
 .brand {
   cursor: pointer;
   font-size: 2rem;
+}
+
+.navbar{
+  padding: 50px;
 }

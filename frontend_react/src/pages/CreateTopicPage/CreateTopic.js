@@ -38,20 +38,28 @@ const CreateTopic = ({}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className="addform">
+      <div className="form-outline mb-4">
         <label>Topic</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className="form-control"
         />
       </div>
-      <div>
+      <div className="form-outline mb-4">
         <label>Text</label>
-        <textarea value={text} onChange={(e) => setText(e.target.value)} />
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          className="form-control"
+          rows="4"
+        />
       </div>
-      <button type="submit">Create</button>
+      <button type="submit" className="btn btn-primary btn-block mb-4">
+        Create
+      </button>
     </form>
   );
 };

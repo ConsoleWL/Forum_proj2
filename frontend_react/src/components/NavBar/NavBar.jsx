@@ -9,20 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <div className="navbar bg-dark border-bottom border-body">
-      <div>
-        <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/ASP.NET JWT Starter</b>
-          </Link>
-        </li>
-
-        {/* <li>
-          {user ? (
-            <button onClick={logoutUser}>Logout</button>
-          ) : (
-            <button onClick={() => navigate("/login")}>Login</button>
-          )}
-        </li> */}
+      <div className="navBar-button">
         <button
           onClick={() => navigate("/")}
           className="navbar-toggler"

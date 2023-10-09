@@ -7,7 +7,7 @@ const TopicTable = ({ topics = [] }) => {
 
   return (
     topicItem && (
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th>Id</th>

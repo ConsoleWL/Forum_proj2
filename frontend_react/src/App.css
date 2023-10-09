@@ -17,15 +17,7 @@ p {
   font-size: 20px;
 }
 
-button {
-  background-color: transparent;
-  border: 2px solid steelblue;
-  color: steelblue;
-  font-size: 1rem;
-  font-family: inherit;
-  max-width: 100px;
-  padding: 0.5rem 0.5rem;
-}
+
 
 button:hover {
   cursor: pointer;
@@ -58,4 +50,39 @@ button:hover {
 }
 body {
   background-color: whitesmoke;
+
+}
+
+.navBar-button button {
+  color: whitesmoke;
+}
+
+.button-like{
+  width: 50px;
+  height: 50px;
+  background-color: #AAAAAA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  font-size: 22px;
+  color:#fff;
+  cursor: pointer;
+}
+
+.addtopic{
+  width: 150px;
+  height: 50px;
+  background-color: #AAAAAA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  font-size: 22px;
+  color:black;
+  cursor: pointer;
+}
+
+.addform{
+  padding: 50px 200px;
 }

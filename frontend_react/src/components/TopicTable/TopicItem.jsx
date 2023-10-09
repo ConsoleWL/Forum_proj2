@@ -31,7 +31,9 @@ const TopicItem = ({ topicObject }) => {
       <tr>
         <td>{topicObject.topicId}</td>
         <td>
-          <Link to={`/topic/${topicObject.topicId}`}>{topicObject.title}</Link>
+          <Link to={`/topic/${topicObject.topicId}`}>
+            <h4>{topicObject.title}</h4>
+          </Link>
         </td>
 
         <td>
@@ -41,7 +43,9 @@ const TopicItem = ({ topicObject }) => {
         </td>
         <td>{shortDateFormat}</td>
         <td>
-          <button onClick={handleTopicLikes}>{topicObject.likes}</button>
+          <button className="button-like" onClick={handleTopicLikes}>
+            {topicObject.likes}
+          </button>
         </td>
       </tr>
     )

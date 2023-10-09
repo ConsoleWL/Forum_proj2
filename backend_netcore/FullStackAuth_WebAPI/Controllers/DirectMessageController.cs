@@ -30,6 +30,7 @@ namespace FullStackAuth_WebAPI.Controllers
                     return Unauthorized();
 
                 var usersWithMessages = _context.DirectMessages.Where(m => m.ToUserId == userId || m.FromUserId == userId).Select(u => u.FromUserId).Distinct().ToList();
+                usersWithMessages.Remove(userId);
                 var users = _context.Users.Where(m => usersWithMessages.Contains(m.Id));
 
                 var userswithMessgesDTO = users.Select(u => new UserForDisplayDto
