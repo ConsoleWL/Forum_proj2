@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 //components
 import TopicTable from "../../components/TopicTable/TopicTable";
@@ -25,6 +26,9 @@ const HomePage = ({}) => {
 
   return (
     <div>
+      <Link to="/topic">
+        <button type="button">New Topic</button>
+      </Link>
       <TopicTable topics={topics} />
     </div>
   );

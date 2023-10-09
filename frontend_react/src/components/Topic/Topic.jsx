@@ -2,14 +2,16 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Topic = ({ topicItem }) => {
   const [user, token] = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState();
   const [title, setTitle] = useState();
+  const navigate = useNavigate();
 
-  var checkProdileIsAuthorizedUser = user.id === topicItem.authorOfTopic.id;
+  var checkProfileIsAuthorizedUser = user.id === topicItem.authorOfTopic.id;
 
   const handleUpdateButton = async (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ const Topic = ({ topicItem }) => {
     text,
   };
 
+  // update topic
   const handleUpdateTopic = async (e) => {
     try {
       e.preventDefault();
@@ -38,6 +41,23 @@ const Topic = ({ topicItem }) => {
       setIsEditing(!isEditing);
     } catch (error) {
       console.warn("Error in Topic Page , Update Button", error);
+    }
+  };
+
+  // delete topic
+  const handleDeleteTopic = async (e) => {
+    try {
+      const response = await axios.delete(
+        `https://localhost:5001/api/topic/${topicItem.topicId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      navigate("/");
+    } catch (error) {
+      console.warn("Error in Home Page , Topic Item, Delete Button", error);
     }
   };
 
@@ -80,8 +100,14 @@ const Topic = ({ topicItem }) => {
       )}
 
       <div>
-        {checkProdileIsAuthorizedUser && !isEditing ? (
+        {checkProfileIsAuthorizedUser && !isEditing ? (
           <button onClick={handleUpdateButton}>Update</button>
+        ) : null}
+      </div>
+
+      <div>
+        {checkProfileIsAuthorizedUser ? (
+          <button onClick={handleDeleteTopic}>Delete</button>
         ) : null}
       </div>
     </div>

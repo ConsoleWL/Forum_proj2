@@ -1,14 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
 
 //components
 import Topic from "../../components/Topic/Topic";
 import CommentsTable from "../../components/Topic/CommentsTable";
+import AddComment from "../../components/Topic/AddComment";
 
 const TopicPage = () => {
-  const [user, token] = useAuth();
   const { topicId } = useParams();
   const [topicItem, setTopicItem] = useState(null);
   const [text, setText] = useState("");
@@ -32,6 +31,7 @@ const TopicPage = () => {
     <div>
       {topicItem && <Topic topicItem={topicItem} />}
       {topicItem && <CommentsTable topicReviews={topicItem.comments} />}
+      <AddComment text={text} setText={setText} topicId={topicId} />
     </div>
   );
 };
