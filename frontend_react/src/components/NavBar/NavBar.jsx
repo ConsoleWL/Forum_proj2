@@ -2,27 +2,94 @@ import React from "react";
 import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import "./NavBar.css";
+// import "./NavBar.css";
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
-    <div className="navBar">
-      <ul>
+    <div className="navbar bg-dark border-bottom border-body">
+      <div>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <b>React/ASP.NET JWT Starter</b>
           </Link>
         </li>
-        <li>
+
+        {/* <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (
             <button onClick={() => navigate("/login")}>Login</button>
           )}
-        </li>
-      </ul>
+        </li> */}
+        <button
+          onClick={() => navigate("/")}
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Home
+        </button>
+
+        <button
+          onClick={() => navigate(`/profile/${user.id}`)}
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Profile
+        </button>
+
+        <button
+          onClick={() => navigate("/messages")}
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Messages
+        </button>
+
+        {user ? (
+          <button
+            onClick={logoutUser}
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            onClick={() => navigate("/login")}
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            Login
+          </button>
+        )}
+      </div>
     </div>
   );
 };

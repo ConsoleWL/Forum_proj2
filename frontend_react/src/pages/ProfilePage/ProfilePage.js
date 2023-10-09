@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Profile from "../../components/Profile/Profile";
 import TopicTable from "../../components/TopicTable/TopicTable";
 import CommentsTable from "../../components/Topic/CommentsTable";
+import SendMessage from "../../components/Profile/SendMessage";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [userObj]);
 
   //get user information
   const fetchUser = async () => {
@@ -28,6 +29,7 @@ const ProfilePage = () => {
   return (
     <div>
       <Profile userObj={userObj} />
+      <SendMessage userObj={userObj} />
       <TopicTable topics={userObj.topics} />
       <CommentsTable topicReviews={userObj.comments} />
     </div>
