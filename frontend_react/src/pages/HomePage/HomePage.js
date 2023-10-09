@@ -6,14 +6,12 @@ import axios from "axios";
 //components
 import TopicTable from "../../components/TopicTable/TopicTable";
 
-const HomePage = () => {
+const HomePage = ({}) => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     fetchTopic();
-  }, []);
-
-  console.log(topics);
+  }, [topics]);
 
   // get all topics
   const fetchTopic = async () => {

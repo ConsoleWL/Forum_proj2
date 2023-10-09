@@ -1,8 +1,6 @@
 import TopicItem from "./TopicItem";
 
 const TopicTable = ({ topics }) => {
-  console.log(topics);
-
   const topicItem = topics.map((topic) => (
     <TopicItem key={topic.topicId} topic={topic} />
   ));

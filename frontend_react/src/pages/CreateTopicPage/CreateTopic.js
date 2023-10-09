@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
-const CreateTopic = ({ user, token }) => {
+const CreateTopic = ({}) => {
+  const [user, token] = useAuth();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const navigate = useNavigate();

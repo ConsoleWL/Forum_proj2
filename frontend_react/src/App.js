@@ -52,7 +52,7 @@ function App() {
           path="/topic"
           element={
             <PrivateRoute>
-              <CreateTopic user={user} token={token} />
+              <CreateTopic />
             </PrivateRoute>
           }
         />
