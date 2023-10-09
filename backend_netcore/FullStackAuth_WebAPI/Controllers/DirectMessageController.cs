@@ -29,7 +29,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 if (string.IsNullOrEmpty(userId))
                     return Unauthorized();
 
-                var usersWithMessages = _context.DirectMessages.Where(m => m.ToUserId == userId).Select(u => u.FromUserId).Distinct().ToList();
+                var usersWithMessages = _context.DirectMessages.Where(m => m.ToUserId == userId || m.FromUserId == userId).Select(u => u.FromUserId).Distinct().ToList();
                 var users = _context.Users.Where(m => usersWithMessages.Contains(m.Id));
 
                 var userswithMessgesDTO = users.Select(u => new UserForDisplayDto

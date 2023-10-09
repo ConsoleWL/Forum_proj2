@@ -5,8 +5,6 @@ import useAuth from "../../hooks/useAuth";
 const TopicItem = ({ topicObject }) => {
   const [user, token] = useAuth();
 
-  console.log(topicObject);
-
   // time posted
   const shortDateFormat = dayjs(topicObject.timePosted).format("MM/DD/YYYY");
 

@@ -65,7 +65,7 @@ function App() {
         />
 
         <Route
-          path="/Messages"
+          path="/messages"
           element={
             <PrivateRoute>
               <DirectMessagesPage />

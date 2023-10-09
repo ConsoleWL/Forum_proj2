@@ -1,22 +1,25 @@
 import CommentItem from "./CommentItem";
 
-const CommentsTable = ({ topicReviews }) => {
+const CommentsTable = ({ topicReviews = [] }) => {
+  console.log(topicReviews);
   const commentItem = topicReviews.map((comment) => (
-    <CommentItem comment={comment} />
+    <CommentItem comment={comment} key={comment.commentId} />
   ));
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Comment</th>
-          <th>User</th>
-          <th>Posted</th>
-          <th>Likes</th>
-        </tr>
-      </thead>
-      <tbody>{commentItem}</tbody>
-    </table>
+    topicReviews && (
+      <table>
+        <thead>
+          <tr>
+            <th>Comment</th>
+            <th>User</th>
+            <th>Posted</th>
+            <th>Likes</th>
+          </tr>
+        </thead>
+        <tbody>{commentItem}</tbody>
+      </table>
+    )
   );
 };
 

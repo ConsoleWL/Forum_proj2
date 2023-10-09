@@ -17,7 +17,6 @@ const ProfilePage = () => {
     fetchUser();
   }, []);
 
-  // console.log(userObj);
   // console.log(userObj.topics);
 
   //get user information
@@ -35,7 +34,7 @@ const ProfilePage = () => {
     <div>
       <Profile userObj={userObj} />
       <TopicTable topics={userObj.topics} />
-      {/* <CommentsTable /> */}
+      <CommentsTable topicReviews={userObj.comments} />
     </div>
   );
 };
