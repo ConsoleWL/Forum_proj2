@@ -24,8 +24,6 @@ import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   const [user, token] = useAuth();
 
-  console.log(user);
-
   return (
     <div>
       <Navbar />
@@ -40,7 +38,7 @@ function App() {
         />
 
         <Route
-          path="/profile/:userName"
+          path="/profile/:id"
           element={
             <PrivateRoute>
               <ProfilePage />

@@ -46,7 +46,11 @@ namespace FullStackAuth_WebAPI.Controllers
                         Title = t.Title,
                         TimePosted = t.TimePosted,
                         Likes = t.Likes,
-                        Text = t.Text
+                        Text = t.Text,
+                        AuthorOfTopic = new UserForDisplayDto
+                        {
+                            UserName = t.AuthorOfTopic.UserName
+                        }
                     }).ToList(),
                     Comments = comments.Select(c => new CommentForDisplayDto
                     {

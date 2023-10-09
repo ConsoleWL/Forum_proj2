@@ -2,17 +2,19 @@ import dayjs from "dayjs";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const TopicItem = ({ topic }) => {
+const TopicItem = ({ topicObject }) => {
   const [user, token] = useAuth();
 
-  // time posted
-  const shortDateFormat = dayjs(topic.timePosted).format("MM/DD/YYYY");
+  console.log(topicObject);
 
-  // handle topics likes
+  // time posted
+  const shortDateFormat = dayjs(topicObject.timePosted).format("MM/DD/YYYY");
+
+  // // handle topics likes
   const handleTopicLikes = async (e) => {
     try {
       const response = await axios.put(
-        `https://localhost:5001/api/topic/liketopic/${topic.topicId}`,
+        `https://localhost:5001/api/topic/liketopic/${topicObject.topicId}`,
         {},
         {
           headers: {
@@ -26,15 +28,18 @@ const TopicItem = ({ topic }) => {
   };
 
   return (
-    <tr>
-      <td>{topic.topicId}</td>
-      <td>{topic.title}</td>
-      <td>{topic.authorOfTopic.userName}</td>
-      <td>{shortDateFormat}</td>
-      <td>
-        <button onClick={handleTopicLikes}>{topic.likes}</button>
-      </td>
-    </tr>
+    topicObject && (
+      <tr>
+        <td>{topicObject.topicId}</td>
+        <td>{topicObject.title}</td>
+
+        <td>{topicObject.authorOfTopic.userName}</td>
+        <td>{shortDateFormat}</td>
+        <td>
+          <button onClick={handleTopicLikes}>{topicObject.likes}</button>
+        </td>
+      </tr>
+    )
   );
 };
 
