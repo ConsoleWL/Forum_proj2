@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const TopicItem = ({ topicObject }) => {
   const [user, token] = useAuth();
@@ -29,9 +30,15 @@ const TopicItem = ({ topicObject }) => {
     topicObject && (
       <tr>
         <td>{topicObject.topicId}</td>
-        <td>{topicObject.title}</td>
+        <td>
+          <Link to={`/topic/${topicObject.topicId}`}>{topicObject.title}</Link>
+        </td>
 
-        <td>{topicObject.authorOfTopic.userName}</td>
+        <td>
+          <Link to={`/profile/${topicObject.authorOfTopic.id}`}>
+            {topicObject.authorOfTopic.userName}
+          </Link>
+        </td>
         <td>{shortDateFormat}</td>
         <td>
           <button onClick={handleTopicLikes}>{topicObject.likes}</button>

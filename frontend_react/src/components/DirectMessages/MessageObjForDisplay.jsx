@@ -1,5 +1,4 @@
 const MessageObjForDisplay = ({ message }) => {
-  console.log(message);
   return (
     <tr>
       <td>{message.fromUser.userName}</td>

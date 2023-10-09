@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 const CommentItem = ({ comment }) => {
-  console.log(comment);
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState();
   const [user, token] = useAuth();
@@ -85,7 +84,12 @@ const CommentItem = ({ comment }) => {
   return (
     <tr>
       <td>{comment.text}</td>
-      <td>{comment.commentOfUser.userName}</td>
+
+      <td>
+        <Link to={`/profile/${comment.commentOfUser.id}`}>
+          {comment.commentOfUser.userName}
+        </Link>
+      </td>
       <td>{shortDateFormat}</td>
       <td>{comment.likes}</td>
       <td>

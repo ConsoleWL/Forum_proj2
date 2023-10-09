@@ -16,8 +16,6 @@ const DirectMessagesPage = () => {
     fetchUsers();
   }, []);
 
-  console.log(users);
-
   useEffect(() => {
     fetchMessages();
   }, [activeIndex]);
