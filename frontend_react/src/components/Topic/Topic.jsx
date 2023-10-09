@@ -4,13 +4,10 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const Topic = ({ topicItem }) => {
-  console.log(topicItem);
-
   const [user, token] = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState();
   const [title, setTitle] = useState();
-  console.log(user);
 
   var checkProdileIsAuthorizedUser = user.id === topicItem.authorOfTopic.id;
 
@@ -77,7 +74,7 @@ const Topic = ({ topicItem }) => {
         </div>
       ) : (
         <div>
-          <div className="d-flex justify-content-center">{topicItem.title}</div>
+          <div>{topicItem.title}</div>
           <div>Text: {topicItem.text}</div>
         </div>
       )}

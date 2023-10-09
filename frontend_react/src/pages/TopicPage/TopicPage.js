@@ -5,12 +5,12 @@ import useAuth from "../../hooks/useAuth";
 
 //components
 import Topic from "../../components/Topic/Topic";
+import CommentsTable from "../../components/Topic/CommentsTable";
 
 const TopicPage = () => {
   const [user, token] = useAuth();
   const { topicId } = useParams();
   const [topicItem, setTopicItem] = useState(null);
-  const [topicReviews, setTopicReviews] = useState(null);
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -24,11 +24,16 @@ const TopicPage = () => {
       );
       setTopicItem(response.data);
     } catch (error) {
-      console.log("Error in fetchTopic by id ", error);
+      console.log("Error in fetchTopic by id, in TopicPage profile ", error);
     }
   };
 
-  return <div>{topicItem && <Topic topicItem={topicItem} />}</div>;
+  return (
+    <div>
+      {topicItem && <Topic topicItem={topicItem} />}
+      {topicItem && <CommentsTable topicReviews={topicItem.comments} />}
+    </div>
+  );
 };
 
 export default TopicPage;
