@@ -2,13 +2,21 @@ import React from "react";
 import { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
+
 // import "./NavBar.css";
 
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
+  const [userInfo, token] = useAuth();
+
+  console.log(userInfo);
+  var isAdminResult = false;
+  userInfo && (isAdminResult = userInfo.isAdmin === "True");
+
   const navigate = useNavigate();
   return (
-    <navbar class="navbar bg-primary">
+    <div className="navbar bg-primary">
       <div>
         <button
           onClick={() => navigate("/")}
@@ -49,6 +57,21 @@ const Navbar = () => {
           Messages
         </button>
 
+        {isAdminResult ? (
+          <button
+            onClick={() => navigate("/admin")}
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            Admin
+          </button>
+        ) : null}
+
         {user ? (
           <button
             onClick={logoutUser}
@@ -77,7 +100,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
-    </navbar>
+    </div>
   );
 };
 

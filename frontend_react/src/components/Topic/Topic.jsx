@@ -74,9 +74,10 @@ const Topic = ({ topicItem }) => {
       </div>
 
       {isEditing ? (
-        <div>
+        <div className="profile">
           <form onSubmit={handleUpdateTopic}>
             <label>Title</label>
+            <br />
             <input
               type="text"
               value={title}
@@ -85,12 +86,19 @@ const Topic = ({ topicItem }) => {
             <br />
             <br />
             <label>Text</label>
+            <br />
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
+              rows="5"
+              cols="70"
             ></textarea>
-
-            <button type="submit">Save</button>
+            <br />
+            <div>
+              <button type="submit" className="btn btn-primary btn-block mb-4">
+                Save
+              </button>
+            </div>
           </form>
         </div>
       ) : (

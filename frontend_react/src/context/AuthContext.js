@@ -15,6 +15,7 @@ function setUserObject(user) {
     userName: user.userName,
     id: user.id,
     email: user.email,
+    isAdmin: user.IsAdmin,
   };
 }
 

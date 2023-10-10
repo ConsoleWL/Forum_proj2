@@ -57,9 +57,13 @@ namespace FullStackAuth_WebAPI.Managers
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
+            var isAdmin = roles.Contains("Admin");
+            claims.Add(new Claim("IsAdmin", isAdmin.ToString()));
+
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
+                
             }
 
             return claims;

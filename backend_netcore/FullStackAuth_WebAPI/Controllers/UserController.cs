@@ -1,7 +1,9 @@
 ﻿using FullStackAuth_WebAPI.Data;
 using FullStackAuth_WebAPI.DataTransferObjects;
+using FullStackAuth_WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -13,10 +15,12 @@ namespace FullStackAuth_WebAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public UserController(ApplicationDbContext context)
+        public UserController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [HttpGet("{id}")]

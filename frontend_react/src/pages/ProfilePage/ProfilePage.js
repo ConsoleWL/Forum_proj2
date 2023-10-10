@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 //components
 import Profile from "../../components/Profile/Profile";
@@ -11,7 +12,9 @@ import SendMessage from "../../components/Profile/SendMessage";
 const ProfilePage = () => {
   const { id } = useParams();
   const [userObj, setUserObj] = useState({});
+  const [user, token] = useAuth();
 
+  console.log(user);
   useEffect(() => {
     fetchUser();
   }, [userObj]);

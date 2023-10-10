@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CreateTopic from "./pages/CreateTopicPage/CreateTopic";
 import TopicPage from "./pages/TopicPage/TopicPage";
 import DirectMessagesPage from "./pages/DirectMessagesPage/DirectMessagesPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -65,6 +66,15 @@ function App() {
           element={
             <PrivateRoute>
               <DirectMessagesPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminPage />
             </PrivateRoute>
           }
         />
