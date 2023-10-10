@@ -43,7 +43,10 @@ const TopicItem = ({ topicObject }) => {
         </td>
         <td>{shortDateFormat}</td>
         <td>
-          <button className="button-like" onClick={handleTopicLikes}>
+          <button
+            className="btn btn-primary btn-block mb-4"
+            onClick={handleTopicLikes}
+          >
             {topicObject.likes}
           </button>
         </td>

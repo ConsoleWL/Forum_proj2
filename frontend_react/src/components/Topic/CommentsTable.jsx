@@ -7,7 +7,7 @@ const CommentsTable = ({ topicReviews = [] }) => {
 
   return (
     topicReviews && (
-      <table>
+      <table className="table dable">
         <thead>
           <tr>
             <th>Comment</th>

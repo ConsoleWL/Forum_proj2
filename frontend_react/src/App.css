@@ -86,3 +86,22 @@ body {
 .addform{
   padding: 50px 200px;
 }
+
+.home-page{
+  padding-top: 30px;
+}
+
+.profile{
+  margin: 20px 50px;
+  background-color: whitesmoke;
+  padding: 20px 20px;
+  
+}
+
+table.dable{
+  margin: 0px 50px 50px 50px;
+}
+.update-delete{
+  margin-right: 5px;
+}
+

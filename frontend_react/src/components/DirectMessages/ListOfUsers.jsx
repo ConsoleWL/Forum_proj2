@@ -13,7 +13,7 @@ const ListOfUsers = ({ users = [], activeIndex, setActiveIndex }) => {
     <table>
       <thead>
         <tr>
-          <th>Users:</th>
+          <h3>Users:</h3>
         </tr>
       </thead>
       <tbody>{userItem}</tbody>

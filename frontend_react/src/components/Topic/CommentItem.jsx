@@ -82,22 +82,34 @@ const CommentItem = ({ comment }) => {
   // format dates
   const shortDateFormat = dayjs(comment.timePosted).format("MM/DD/YYYY");
   return (
-    <tr>
-      <td>{comment.text}</td>
+    <tr className="comment-section">
+      <td>
+        <p>{comment.text}</p>
+      </td>
 
       <td>
         <Link to={`/profile/${comment.commentOfUser.id}`}>
-          {comment.commentOfUser.userName}
+          <p>{comment.commentOfUser.userName}</p>
         </Link>
       </td>
       <td>{shortDateFormat}</td>
       <td>{comment.likes}</td>
       <td>
-        <button onClick={handleCommentLikes}> {comment.likes}</button>
+        <button
+          onClick={handleCommentLikes}
+          className="btn btn-primary btn-block mb-4"
+        >
+          {" "}
+          {comment.likes}{" "}
+        </button>
       </td>
       {checkOwnerOfComment ? (
         <td>
-          <button type="button" onClick={handleDeleteComment}>
+          <button
+            type="button"
+            onClick={handleDeleteComment}
+            className="btn btn-primary btn-block mb-4"
+          >
             Delete
           </button>
         </td>
@@ -115,7 +127,11 @@ const CommentItem = ({ comment }) => {
 
       <td>
         {checkOwnerOfComment && !isEditing ? (
-          <button onClick={handleUpdateUpdate} type="button">
+          <button
+            onClick={handleUpdateUpdate}
+            type="button"
+            className="btn btn-primary btn-block mb-4"
+          >
             Update
           </button>
         ) : null}

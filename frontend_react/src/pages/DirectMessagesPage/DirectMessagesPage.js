@@ -58,15 +58,17 @@ const DirectMessagesPage = () => {
   };
 
   return (
-    <div>
-      <div>
-        <ListOfUsers
-          users={users}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
+    <div className="profile">
+      <div className="d-flex justify-content-evenly">
+        <div>
+          <ListOfUsers
+            users={users}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        </div>
+        <div>{messages && <DirectMessagesUser messages={messages} />}</div>
       </div>
-      <div>{messages && <DirectMessagesUser messages={messages} />}</div>
     </div>
   );
 };

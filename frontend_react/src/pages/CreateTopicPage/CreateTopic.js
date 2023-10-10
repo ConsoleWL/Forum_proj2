@@ -57,9 +57,11 @@ const CreateTopic = ({}) => {
           rows="4"
         />
       </div>
-      <button type="submit" className="btn btn-primary btn-block mb-4">
-        Create
-      </button>
+      <div className="d-flex justify-content-center">
+        <button type="submit" className="btn btn-primary btn-block mb-4">
+          Create
+        </button>
+      </div>
     </form>
   );
 };

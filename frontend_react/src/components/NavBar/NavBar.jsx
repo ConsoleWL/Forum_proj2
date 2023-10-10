@@ -8,8 +8,8 @@ const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
-    <div className="navbar bg-dark border-bottom border-body">
-      <div className="navBar-button">
+    <navbar class="navbar bg-primary">
+      <div>
         <button
           onClick={() => navigate("/")}
           className="navbar-toggler"
@@ -77,7 +77,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
-    </div>
+    </navbar>
   );
 };
 

@@ -29,13 +29,18 @@ const AddComment = ({ text, setText, topicId }) => {
   return (
     <form onSubmit={handleAddComent}>
       <div>
-        <textarea
-          rows="3"
-          onChange={(e) => setText(e.target.value)}
-          placeholder="comment"
-        />
+        <div>
+          <textarea
+            rows="3"
+            cols="30"
+            onChange={(e) => setText(e.target.value)}
+            placeholder="comment"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary btn-block mb-4">
+          Add
+        </button>
       </div>
-      <button type="submit">Add</button>
     </form>
   );
 };

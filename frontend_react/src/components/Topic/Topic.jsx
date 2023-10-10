@@ -67,8 +67,8 @@ const Topic = ({ topicItem }) => {
 
   return (
     <div>
-      <div>
-        <div>Author: {topicItem.authorOfTopic.userName}</div>
+      <div className="profile">
+        <h3>Author: {topicItem.authorOfTopic.userName}</h3>
         <div>PublishedDate: {shortDateFormat}</div>
         <div>Likes: {topicItem.likes}</div>
       </div>
@@ -94,22 +94,34 @@ const Topic = ({ topicItem }) => {
           </form>
         </div>
       ) : (
-        <div>
-          <div>{topicItem.title}</div>
-          <div>Text: {topicItem.text}</div>
+        <div className="profile">
+          <h3>{topicItem.title}</h3>
+          <p>Text: {topicItem.text}</p>
         </div>
       )}
 
-      <div>
-        {checkProfileIsAuthorizedUser && !isEditing ? (
-          <button onClick={handleUpdateButton}>Update</button>
-        ) : null}
-      </div>
+      <div class="d-flex justify-content-start profile">
+        <div className="update-delete">
+          {checkProfileIsAuthorizedUser && !isEditing ? (
+            <button
+              onClick={handleUpdateButton}
+              className="btn btn-primary btn-block mb-4"
+            >
+              Update
+            </button>
+          ) : null}
+        </div>
 
-      <div>
-        {checkProfileIsAuthorizedUser ? (
-          <button onClick={handleDeleteTopic}>Delete</button>
-        ) : null}
+        <div className="update-delete">
+          {checkProfileIsAuthorizedUser ? (
+            <button
+              onClick={handleDeleteTopic}
+              className="btn btn-primary btn-block mb-4"
+            >
+              Delete
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

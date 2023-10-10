@@ -6,8 +6,8 @@ const Profile = (userObj) => {
   );
 
   return (
-    <div>
-      <div>User: {userObj.userObj.userName}</div>
+    <div className="profile">
+      <h3>{userObj.userObj.userName}</h3>
       <div>Registered: {shortDateFormat}</div>
     </div>
   );

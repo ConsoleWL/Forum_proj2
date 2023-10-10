@@ -64,7 +64,7 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <button>Register!</button>
+        <button className="btn btn-primary btn-block mb-4">Register!</button>
       </form>
     </div>
   );

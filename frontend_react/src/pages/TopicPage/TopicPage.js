@@ -29,9 +29,13 @@ const TopicPage = () => {
 
   return (
     <div>
-      {topicItem && <Topic topicItem={topicItem} />}
-      {topicItem && <CommentsTable topicReviews={topicItem.comments} />}
-      <AddComment text={text} setText={setText} topicId={topicId} />
+      <div>{topicItem && <Topic topicItem={topicItem} />}</div>
+      <div>
+        {topicItem && <CommentsTable topicReviews={topicItem.comments} />}
+      </div>
+      <div className="profile">
+        <AddComment text={text} setText={setText} topicId={topicId} />
+      </div>
     </div>
   );
 };

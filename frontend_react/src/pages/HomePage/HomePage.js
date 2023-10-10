@@ -24,12 +24,14 @@ const HomePage = ({}) => {
   };
 
   return (
-    <div>
-      <Link to="/topic">
-        <button className="addtopic" type="button">
-          New Topic
-        </button>
-      </Link>
+    <div className="home-page">
+      <div className="d-flex justify-content-center">
+        <Link to="/topic">
+          <button className="btn btn-primary btn-block mb-4" type="button">
+            New Topic
+          </button>
+        </Link>
+      </div>
       <TopicTable topics={topics} />
     </div>
   );

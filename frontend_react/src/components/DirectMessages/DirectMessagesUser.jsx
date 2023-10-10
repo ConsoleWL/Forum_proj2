@@ -7,7 +7,7 @@ const DirectMessagesUser = ({ messages }) => {
     <table>
       <thead>
         <tr>
-          <th>User</th>
+          <h3>User</h3>
           <th>Messages</th>
         </tr>
       </thead>
