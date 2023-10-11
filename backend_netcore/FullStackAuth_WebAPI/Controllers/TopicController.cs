@@ -33,14 +33,14 @@ namespace FullStackAuth_WebAPI.Controllers
                 {
                     TopicId = t.TopicId,
                     Title = t.Title,
-                    TimePosted = t.TimePosted,
+                    TimePosted = t.TimePosted.ToString("yyyy-MM-dd"),
                     Likes = t.Likes,
                     AuthorOfTopic = new UserForDisplayDto
                     {
                         Id = t.AuthorOfTopic.Id,
                         UserName = t.AuthorOfTopic.UserName
                     }
-
+                    
                 }).ToList();
                 return Ok(topicsDto);
             }
@@ -68,7 +68,7 @@ namespace FullStackAuth_WebAPI.Controllers
                     TopicId = topic.TopicId,
                     Title = topic.Title,
                     Text = topic.Text,
-                    TimePosted = topic.TimePosted,
+                    TimePosted = topic.TimePosted.ToString("yyyy-MM-dd"),
                     Likes = topic.Likes,
                     AuthorOfTopic = new UserForDisplayDto
                     {
@@ -79,7 +79,7 @@ namespace FullStackAuth_WebAPI.Controllers
                     {
                         CommentId = c.CommentId,
                         Text = c.Text,
-                        TimePosted = c.TimePosted,
+                        TimePosted = c.TimePosted.ToString("yyyy-MM-dd"),
                         Likes = c.Likes,
                         CommentOfUser = new UserForDisplayDto
                         {

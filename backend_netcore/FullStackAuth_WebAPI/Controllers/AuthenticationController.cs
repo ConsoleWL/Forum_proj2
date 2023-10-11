@@ -27,7 +27,7 @@ namespace FullStackAuth_WebAPI.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {
-
+            userForRegistration.RegistrationDate = DateTime.Now;
             var user = _mapper.Map<User>(userForRegistration);
 
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
@@ -47,6 +47,7 @@ namespace FullStackAuth_WebAPI.Controllers
                 UserName = user.UserName,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+
             };
             return StatusCode(201, createdUser);
         }

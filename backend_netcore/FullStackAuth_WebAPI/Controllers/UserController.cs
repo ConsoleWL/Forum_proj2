@@ -23,6 +23,30 @@ namespace FullStackAuth_WebAPI.Controllers
             _userManager = userManager;
         }
 
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            try
+            {
+                var users = _context.Users.ToList();
+
+                var userDto = users.Select(u => new UserForDisplayDto
+                {
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    RegistrationDate = u.RegistrationDate.ToString("yyyy-MM-dd"),
+
+                }).ToList();
+
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetUserData(string id)
         {
@@ -43,12 +67,15 @@ namespace FullStackAuth_WebAPI.Controllers
                 {
                     Id = user.Id,
                     UserName = user.UserName,
-                    RegistrationDate = user.RegistrationDate,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    RegistrationDate = user.RegistrationDate.ToString("yyyy-MM-dd"),
                     Topics = topics.Select(t => new TopicForDisplayDto
                     {
                         TopicId = t.TopicId,
                         Title = t.Title,
-                        TimePosted = t.TimePosted,
+                        TimePosted = t.TimePosted.ToString("yyyy-MM-dd"),
                         Likes = t.Likes,
                         Text = t.Text,
                         AuthorOfTopic = new UserForDisplayDto
@@ -60,14 +87,13 @@ namespace FullStackAuth_WebAPI.Controllers
                     {
                         CommentId = c.CommentId,
                         Text = c.Text,
-                        TimePosted = c.TimePosted,
+                        TimePosted = c.TimePosted.ToString("yyyy-MM-dd"),
                         Likes = c.Likes,
                         CommentOfUser = new UserForDisplayDto
                         {   
                             Id = c.CommentOfUser.Id,
                             UserName = c.CommentOfUser.UserName
                         },
-
                     }).ToList()
                 };
 

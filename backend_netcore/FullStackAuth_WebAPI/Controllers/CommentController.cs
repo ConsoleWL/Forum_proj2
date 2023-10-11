@@ -20,6 +20,27 @@ namespace FullStackAuth_WebAPI.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult GetAllComment()
+        {
+            try
+            {
+                var comments = _context.Comments.ToList();
+
+                var commentsDTo = comments.Select(c => new CommentForDisplayDto
+                {
+                    CommentId = c.CommentId,
+                    TimePosted = c.TimePosted.ToString("yyyy-MM-dd")
+                }).ToList();
+
+                return Ok(commentsDTo);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost, Authorize]
         public IActionResult PostComment([FromBody] Comment comment)
         {
