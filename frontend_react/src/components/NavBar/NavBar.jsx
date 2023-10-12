@@ -10,7 +10,6 @@ const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const [userInfo, token] = useAuth();
 
-  console.log(userInfo);
   var isAdminResult = false;
   userInfo && (isAdminResult = userInfo.isAdmin === "True");
 

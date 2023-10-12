@@ -107,5 +107,35 @@ namespace FullStackAuth_WebAPI.Controllers
 
         }
 
+        [HttpPut, Authorize]
+        public IActionResult UpdateUser([FromBody] User user)
+        {
+            try
+            {
+                string userId = User.FindFirstValue("id");
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized();
+
+                var existUser = _context.Users.FirstOrDefault(user => user.Id == userId);
+                if (existUser is null)
+                    return NotFound();
+
+                existUser.LastName = user.LastName;
+                existUser.FirstName = user.FirstName;
+                existUser.Email = user.Email;
+
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                _context.SaveChanges();
+                return StatusCode(201);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
     }
 }

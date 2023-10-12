@@ -14,7 +14,6 @@ const ProfilePage = () => {
   const [userObj, setUserObj] = useState({});
   const [user, token] = useAuth();
 
-  console.log(user);
   useEffect(() => {
     fetchUser();
   }, [userObj]);
