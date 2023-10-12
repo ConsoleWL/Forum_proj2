@@ -17,6 +17,9 @@ namespace FullStackAuth_WebAPI.Models
         public DateTime TimePosted { get; set; }
         public int Likes { get; set; } = 0;
 
+        public DateTime EditedDate { get; set; }
+        public bool IsEdited { get; set; } = false;
+
         // Nav props
 
         [ForeignKey("User")]

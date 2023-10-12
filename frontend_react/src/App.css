@@ -105,3 +105,16 @@ table.dable{
   margin-right: 5px;
 }
 
+.admindiv{
+  margin: 50px 50px;
+  padding: 10px 40px;
+}
+
+.chart{
+  margin: 20px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+.commentform{
+  justify-content: space-evenly;
+}

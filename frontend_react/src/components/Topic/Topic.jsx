@@ -108,7 +108,7 @@ const Topic = ({ topicItem }) => {
         </div>
       )}
 
-      <div class="d-flex justify-content-start profile">
+      <div className="d-flex justify-content-start profile">
         <div className="update-delete">
           {checkProfileIsAuthorizedUser && !isEditing ? (
             <button

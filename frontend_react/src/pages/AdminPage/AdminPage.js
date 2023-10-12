@@ -106,7 +106,8 @@ const AdminPage = () => {
   };
 
   return user.isAdmin === "True" ? (
-    <div>
+    <div className="admindiv">
+      <h3 className="chart">Topics created daily:</h3>
       <Chart
         chartType="Bar"
         width="100%"
@@ -114,6 +115,7 @@ const AdminPage = () => {
         data={data}
         options={options}
       />
+      <h3 className="chart">Users registered daily</h3>
       <Chart
         chartType="Bar"
         width="100%"
@@ -121,6 +123,7 @@ const AdminPage = () => {
         data={dataUser}
         options={options}
       />
+      <h3 className="chart">Comments registered daily</h3>
       <Chart
         chartType="Bar"
         width="100%"

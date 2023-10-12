@@ -11,6 +11,8 @@ const CommentItem = ({ comment }) => {
 
   var checkOwnerOfComment = user.id === comment.commentOfUser.id;
 
+  const shortDateFormatComment = dayjs(comment.editedDate).format("MM/DD/YYYY");
+
   //add like for comment
   const handleCommentLikes = async (e) => {
     try {
@@ -79,6 +81,7 @@ const CommentItem = ({ comment }) => {
     }
   };
 
+  console.log(comment);
   // format dates
   const shortDateFormat = dayjs(comment.timePosted).format("MM/DD/YYYY");
   return (
@@ -93,6 +96,7 @@ const CommentItem = ({ comment }) => {
         </Link>
       </td>
       <td>{shortDateFormat}</td>
+      <td>{comment.isEdited ? shortDateFormatComment : null}</td>
       <td>{comment.likes}</td>
       <td>
         <button
@@ -117,10 +121,17 @@ const CommentItem = ({ comment }) => {
 
       {isEditing ? (
         <td>
-          <form onSubmit={handleCommentText}>
+          <form onSubmit={handleCommentText} className="commentform">
             <label>Text</label>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} />
-            <button type="submit">Save</button>
+
+            <textarea
+              className="texttextarea"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <button type="submit" className="btn btn-primary btn-block mb-4">
+              Save
+            </button>
           </form>
         </td>
       ) : null}

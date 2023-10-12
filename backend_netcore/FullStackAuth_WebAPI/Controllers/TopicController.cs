@@ -34,6 +34,8 @@ namespace FullStackAuth_WebAPI.Controllers
                     TopicId = t.TopicId,
                     Title = t.Title,
                     TimePosted = t.TimePosted.ToString("yyyy-MM-dd"),
+                    IsEdited = t.IsEdited,
+                    EditedDate = t.EditedDate,
                     Likes = t.Likes,
                     AuthorOfTopic = new UserForDisplayDto
                     {
@@ -70,6 +72,8 @@ namespace FullStackAuth_WebAPI.Controllers
                     Text = topic.Text,
                     TimePosted = topic.TimePosted.ToString("yyyy-MM-dd"),
                     Likes = topic.Likes,
+                    IsEdited = topic.IsEdited,
+                    EditedDate = topic.EditedDate,
                     AuthorOfTopic = new UserForDisplayDto
                     {
                         Id = topic.AuthorOfTopic.Id,
@@ -81,6 +85,8 @@ namespace FullStackAuth_WebAPI.Controllers
                         Text = c.Text,
                         TimePosted = c.TimePosted.ToString("yyyy-MM-dd"),
                         Likes = c.Likes,
+                        IsEdited = c.IsEdited,
+                        EditedDate = c.EditedDate,
                         CommentOfUser = new UserForDisplayDto
                         {
                             Id = c.CommentOfUser.Id,
@@ -170,6 +176,8 @@ namespace FullStackAuth_WebAPI.Controllers
 
                 existTopic.Title = topic.Title;
                 existTopic.Text = topic.Text;
+                existTopic.IsEdited = true;
+                existTopic.EditedDate = DateTime.Now;
 
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);

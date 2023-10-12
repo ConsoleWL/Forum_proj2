@@ -112,6 +112,8 @@ namespace FullStackAuth_WebAPI.Controllers
                     return Unauthorized();
 
                 existComment.Text = comment.Text;
+                existComment.IsEdited = true;
+                existComment.EditedDate = DateTime.Now;
 
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);

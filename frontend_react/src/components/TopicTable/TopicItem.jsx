@@ -8,6 +8,9 @@ const TopicItem = ({ topicObject }) => {
 
   // time posted
   const shortDateFormat = dayjs(topicObject.timePosted).format("MM/DD/YYYY");
+  const shortDateFormatTopic = dayjs(topicObject.editedDate).format(
+    "MM/DD/YYYY"
+  );
 
   // // handle topics likes
   const handleTopicLikes = async (e) => {
@@ -42,6 +45,8 @@ const TopicItem = ({ topicObject }) => {
           </Link>
         </td>
         <td>{shortDateFormat}</td>
+
+        <td>{topicObject.isEdited ? shortDateFormatTopic : null}</td>
         <td>
           <button
             className="btn btn-primary btn-block mb-4"

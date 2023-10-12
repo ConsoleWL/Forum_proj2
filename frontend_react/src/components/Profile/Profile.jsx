@@ -19,7 +19,7 @@ const Profile = (userObj) => {
   const handleUpdateButton = async (e) => {
     e.preventDefault();
     setIsEditing(!isEditing);
-    setFirstName(userObj.userObj.firtName);
+    setFirstName(userObj.userObj.firstName);
     setLastName(userObj.userObj.lastName);
     setEmail(userObj.userObj.email);
   };
@@ -82,6 +82,7 @@ const Profile = (userObj) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
+            <br />
             <br />
             <div>
               <button type="submit" className="btn btn-primary btn-block mb-4">

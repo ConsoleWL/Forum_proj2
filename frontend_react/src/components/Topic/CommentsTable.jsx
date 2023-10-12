@@ -13,6 +13,7 @@ const CommentsTable = ({ topicReviews = [] }) => {
             <th>Comment</th>
             <th>User</th>
             <th>Posted</th>
+            <th>Edited</th>
             <th>Likes</th>
           </tr>
         </thead>

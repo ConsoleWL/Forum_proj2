@@ -78,6 +78,8 @@ namespace FullStackAuth_WebAPI.Controllers
                         TimePosted = t.TimePosted.ToString("yyyy-MM-dd"),
                         Likes = t.Likes,
                         Text = t.Text,
+                        IsEdited = t.IsEdited,
+                        EditedDate = t.EditedDate,
                         AuthorOfTopic = new UserForDisplayDto
                         {
                             UserName = t.AuthorOfTopic.UserName
@@ -89,6 +91,8 @@ namespace FullStackAuth_WebAPI.Controllers
                         Text = c.Text,
                         TimePosted = c.TimePosted.ToString("yyyy-MM-dd"),
                         Likes = c.Likes,
+                        IsEdited = c.IsEdited,
+                        EditedDate = c.EditedDate,
                         CommentOfUser = new UserForDisplayDto
                         {   
                             Id = c.CommentOfUser.Id,

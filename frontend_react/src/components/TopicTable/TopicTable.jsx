@@ -15,6 +15,7 @@ const TopicTable = ({ topics = [] }) => {
 
             <th>Author</th>
             <th>Published</th>
+            <th>Edited</th>
             <th>Likes</th>
           </tr>
         </thead>

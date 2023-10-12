@@ -9,7 +9,9 @@ namespace FullStackAuth_WebAPI.DataTransferObjects
         public string TimePosted { get; set; }
         public int Likes { get; set; }
         public string Text { get; set; }
-        
+
+        public DateTime EditedDate { get; set; }
+        public bool IsEdited { get; set; } 
 
 
         public UserForDisplayDto AuthorOfTopic { get; set; }
