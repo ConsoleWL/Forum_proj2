@@ -29,16 +29,22 @@ namespace FullStackAuth_WebAPI.Controllers
                 if (string.IsNullOrEmpty(userId))
                     return Unauthorized();
 
-                var usersWithMessages = _context.DirectMessages.Where(m => m.ToUserId == userId || m.FromUserId == userId).Select(u => u.FromUserId).Distinct().ToList();
-                usersWithMessages.Remove(userId);
-                var users = _context.Users.Where(m => usersWithMessages.Contains(m.Id));
+                
+                var usersWithMessages = _context.DirectMessages.Where(m => m.ToUserId == userId || m.FromUserId == userId).ToList();
+                //usersWithMessages.Remove(userId);
+                //.Select(u => u.FromUserId).Distinct()
+                var usersIdList = usersWithMessages.Select(u => u.FromUserId).Distinct().ToList();
+                usersIdList.AddRange(usersWithMessages.Select(u => u.ToUserId).Distinct().ToList());
+                usersIdList.Remove(userId);
 
-                var userswithMessgesDTO = users.Select(u => new UserForDisplayDto
+                var userList = _context.Users.Where(u => usersIdList.Contains(u.Id)).ToList();
+                var userswithMessgesDTO = userList.Select(u => new UserForDisplayDto
                 {
                     Id = u.Id,
                     UserName = u.UserName,
                 }).ToList();
 
+                //return Ok(userswithMessgesDTO);
                 return Ok(userswithMessgesDTO);
             }
             catch (Exception ex)

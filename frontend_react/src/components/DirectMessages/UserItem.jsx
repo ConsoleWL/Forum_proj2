@@ -1,17 +1,15 @@
-import { Link } from "react-router-dom";
+import "./MessageObjForDisplay.css";
 
 const UserItem = ({ userObj, activeIndex, setActiveIndex, index }) => {
   const handleActive = () => {
     setActiveIndex(index);
   };
   return (
-    <tr>
-      <td onClick={handleActive}>
-        <button className="btn btn-primary btn-block mb-4">
-          {userObj.userName}
-        </button>
-      </td>
-    </tr>
+    <div className="container4">
+      <div onClick={handleActive}>
+        <h4 className="person">{userObj.userName}</h4>
+      </div>
+    </div>
   );
 };
 

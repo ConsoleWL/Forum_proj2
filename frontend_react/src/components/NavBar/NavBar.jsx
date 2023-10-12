@@ -19,7 +19,7 @@ const Navbar = () => {
       <div>
         <button
           onClick={() => navigate("/")}
-          className="navbar-toggler"
+          className="navbar-toggler whitebite"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNavAltMarkup"
