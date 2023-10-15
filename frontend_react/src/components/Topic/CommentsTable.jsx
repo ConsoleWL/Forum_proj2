@@ -1,8 +1,12 @@
 import CommentItem from "./CommentItem";
 
-const CommentsTable = ({ topicReviews = [] }) => {
+const CommentsTable = ({ topicReviews = [], isProfilePage }) => {
   const commentItem = topicReviews.map((comment) => (
-    <CommentItem comment={comment} key={comment.commentId} />
+    <CommentItem
+      comment={comment}
+      key={comment.commentId}
+      isProfilePage={isProfilePage}
+    />
   ));
 
   return (

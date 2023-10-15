@@ -32,7 +32,7 @@ const HomePage = ({}) => {
           </button>
         </Link>
       </div>
-      <TopicTable topics={topics} />
+      <TopicTable topics={topics} isProfilePage={false} />
     </div>
   );
 };

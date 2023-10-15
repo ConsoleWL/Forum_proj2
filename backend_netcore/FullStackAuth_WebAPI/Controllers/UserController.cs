@@ -17,12 +17,10 @@ namespace FullStackAuth_WebAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<User> _userManager;
 
-        public UserController(ApplicationDbContext context, UserManager<User> userManager)
+        public UserController(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
         [HttpGet]
@@ -99,7 +97,9 @@ namespace FullStackAuth_WebAPI.Controllers
                         CommentOfUser = new UserForDisplayDto
                         {
                             Id = c.CommentOfUser.Id,
-                            UserName = c.CommentOfUser.UserName
+                            UserName = c.CommentOfUser.UserName,
+                            ProfilePictureB64Base = c.CommentOfUser.ImageData
+                            
                         },
                     }).ToList()
                 };

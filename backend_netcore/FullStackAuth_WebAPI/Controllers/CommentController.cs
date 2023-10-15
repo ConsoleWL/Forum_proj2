@@ -30,7 +30,9 @@ namespace FullStackAuth_WebAPI.Controllers
                 var commentsDTo = comments.Select(c => new CommentForDisplayDto
                 {
                     CommentId = c.CommentId,
-                    TimePosted = c.TimePosted.ToString("yyyy-MM-dd")
+                    TimePosted = c.TimePosted.ToString("yyyy-MM-dd"),
+                    
+                    
                 }).ToList();
 
                 return Ok(commentsDTo);

@@ -93,7 +93,8 @@ namespace FullStackAuth_WebAPI.Controllers
                         CommentOfUser = new UserForDisplayDto
                         {
                             Id = c.CommentOfUser.Id,
-                            UserName = c.CommentOfUser.UserName
+                            UserName = c.CommentOfUser.UserName,
+                            ProfilePictureB64Base = c.CommentOfUser.ImageData,
                         }
                     }).ToList()
                 };

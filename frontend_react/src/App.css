@@ -24,7 +24,7 @@ p {
   border-radius: 50px;
 }
 
-
+/* 
 button:hover {
   cursor: pointer;
   color: white;
@@ -87,7 +87,7 @@ body {
   font-size: 22px;
   color:black;
   cursor: pointer;
-}
+} */
 
 .addform{
   padding: 50px 200px;

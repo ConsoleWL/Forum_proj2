@@ -1,8 +1,12 @@
 import TopicItem from "./TopicItem";
 
-const TopicTable = ({ topics = [] }) => {
+const TopicTable = ({ topics = [], isProfilePage }) => {
   const topicItem = topics.map((topic) => (
-    <TopicItem key={topic.topicId} topicObject={topic} />
+    <TopicItem
+      key={topic.topicId}
+      topicObject={topic}
+      isProfilePage={isProfilePage}
+    />
   ));
 
   return (

@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({ comment, isProfilePage }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState();
   const [user, token] = useAuth();
@@ -33,6 +33,7 @@ const CommentItem = ({ comment }) => {
     }
   };
 
+  console.log(comment);
   //delete comment
   const handleDeleteComment = async (e) => {
     try {
@@ -81,7 +82,6 @@ const CommentItem = ({ comment }) => {
     }
   };
 
-  console.log(comment);
   // format dates
   const shortDateFormat = dayjs(comment.timePosted).format("MM/DD/YYYY");
   return (
@@ -92,6 +92,12 @@ const CommentItem = ({ comment }) => {
 
       <td>
         <Link to={`/profile/${comment.commentOfUser.id}`}>
+          {!isProfilePage ? (
+            <img
+              className="icon-image-small"
+              src={`data:image/jpeg;base64, ${comment.commentOfUser.profilePictureB64Base}`}
+            />
+          ) : null}
           <p>{comment.commentOfUser.userName}</p>
         </Link>
       </td>

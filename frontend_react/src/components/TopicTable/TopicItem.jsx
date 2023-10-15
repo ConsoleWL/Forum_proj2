@@ -3,7 +3,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 
-const TopicItem = ({ topicObject }) => {
+const TopicItem = ({ topicObject, isProfilePage }) => {
   const [user, token] = useAuth();
 
   // time posted
@@ -11,8 +11,7 @@ const TopicItem = ({ topicObject }) => {
   const shortDateFormatTopic = dayjs(topicObject.editedDate).format(
     "MM/DD/YYYY"
   );
-
-  console.log(topicObject);
+  console.log(isProfilePage);
   // // handle topics likes
   const handleTopicLikes = async (e) => {
     try {
@@ -42,10 +41,12 @@ const TopicItem = ({ topicObject }) => {
 
         <td>
           <Link to={`/profile/${topicObject.authorOfTopic.id}`}>
-            <img
-              className="icon-image-small"
-              src={`data:image/jpeg;base64, ${topicObject.authorOfTopic.profilePictureB64Base}`}
-            />
+            {!isProfilePage ? (
+              <img
+                className="icon-image-small"
+                src={`data:image/jpeg;base64, ${topicObject.authorOfTopic.profilePictureB64Base}`}
+              />
+            ) : null}
             {topicObject.authorOfTopic.userName}
           </Link>
         </td>

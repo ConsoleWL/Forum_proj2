@@ -32,8 +32,8 @@ const ProfilePage = () => {
     <div>
       <Profile userObj={userObj} />
       <SendMessage userObj={userObj} />
-      <TopicTable topics={userObj.topics} />
-      <CommentsTable topicReviews={userObj.comments} />
+      <TopicTable topics={userObj.topics} isProfilePage={true} />
+      <CommentsTable topicReviews={userObj.comments} isProfilePage={true} />
     </div>
   );
 };
