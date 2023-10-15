@@ -11,7 +11,7 @@ const TopicTable = ({ topics = [], isProfilePage }) => {
 
   return (
     topicItem && (
-      <table className="table dable">
+      <table className="table">
         <thead>
           <tr>
             <th>Id</th>

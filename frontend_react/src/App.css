@@ -147,3 +147,46 @@ table.dable{
 .profile-topic{
   padding: 10 90px;
 }
+
+/* Driding CSS  */
+
+.home-page{
+  padding: 80px 10px;
+
+}
+
+.button-new{
+  padding: 7px 10px;
+  background-color: #333;
+  color: whitesmoke;
+  border-radius: 10px;
+}
+.table-header{
+  background-color: #333;
+}
+
+.title-name{
+  text-decoration: none;
+color: #333;
+}
+
+.title-name-capitalized{
+  text-transform: uppercase;
+}
+
+.author-name-small{
+  text-transform: lowercase;
+}
+
+.author-name{
+  font-size: large;
+  font-weight: 500;
+}
+
+.table-row{
+  padding-top: 50px;
+}
+
+.like{
+  width: 55px;
+}

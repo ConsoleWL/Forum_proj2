@@ -27,7 +27,7 @@ const HomePage = ({}) => {
     <div className="home-page">
       <div className="d-flex justify-content-center">
         <Link to="/topic">
-          <button className="btn btn-primary btn-block mb-4" type="button">
+          <button className="button-new" type="button">
             New Topic
           </button>
         </Link>

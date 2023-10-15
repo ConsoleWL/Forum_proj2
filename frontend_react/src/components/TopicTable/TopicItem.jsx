@@ -31,33 +31,37 @@ const TopicItem = ({ topicObject, isProfilePage }) => {
 
   return (
     topicObject && (
-      <tr>
-        <td>{topicObject.topicId}</td>
+      <tr className="table-row">
+        <td className="title-name">{topicObject.topicId}</td>
         <td>
-          <Link to={`/topic/${topicObject.topicId}`}>
-            <h4>{topicObject.title}</h4>
+          <Link className="title-name" to={`/topic/${topicObject.topicId}`}>
+            <h4 className="title-name title-name-capitalized">
+              {topicObject.title}
+            </h4>
           </Link>
         </td>
 
         <td>
-          <Link to={`/profile/${topicObject.authorOfTopic.id}`}>
+          <Link
+            className="title-name"
+            to={`/profile/${topicObject.authorOfTopic.id}`}
+          >
             {!isProfilePage ? (
               <img
                 className="icon-image-small"
                 src={`data:image/jpeg;base64, ${topicObject.authorOfTopic.profilePictureB64Base}`}
               />
             ) : null}
-            {topicObject.authorOfTopic.userName}
+            <span className="author-name author-name-small">
+              {topicObject.authorOfTopic.userName}
+            </span>
           </Link>
         </td>
         <td>{shortDateFormat}</td>
 
         <td>{topicObject.isEdited ? shortDateFormatTopic : null}</td>
         <td>
-          <button
-            className="btn btn-primary btn-block mb-4"
-            onClick={handleTopicLikes}
-          >
+          <button className="button-new like" onClick={handleTopicLikes}>
             {topicObject.likes}
           </button>
         </td>

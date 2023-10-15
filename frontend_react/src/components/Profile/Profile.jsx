@@ -63,7 +63,7 @@ const Profile = (userObj) => {
   };
 
   return (
-    <div className="profile profile-info profile-container">
+    <div>
       <div>
         <h3>username: {userObj.userObj.userName}</h3>
         <h5>first name: {userObj.userObj.firstName}</h5>
@@ -72,7 +72,7 @@ const Profile = (userObj) => {
         <div>Registered: {shortDateFormat}</div>
 
         {isEditing ? (
-          <div className="profile">
+          <div>
             <form onSubmit={handleUpdateProfile}>
               <label>FirtName</label>
               <br />
@@ -98,41 +98,27 @@ const Profile = (userObj) => {
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
               <br />
-              <label className="form-label">Default file input example</label>
-              <input
-                className="form-control"
-                type="file"
-                onChange={handleImageChange}
-              />
+              <label>Default file input example</label>
+              <input type="file" onChange={handleImageChange} />
               <br />
               <div>
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block mb-4"
-                >
-                  Save
-                </button>
+                <button type="submit">Save</button>
               </div>
             </form>
-            <div className="mb-3"></div>
+            <div></div>
           </div>
         ) : null}
 
-        <div className="d-flex justify-content-start profile">
-          <div className="update-delete">
+        <div>
+          <div>
             {checkProfileIsAuthorizedUser && !isEditing ? (
-              <button
-                onClick={handleUpdateButton}
-                className="btn btn-primary btn-block mb-4"
-              >
-                Update
-              </button>
+              <button onClick={handleUpdateButton}>Update</button>
             ) : null}
           </div>
         </div>
       </div>
 
-      <div className="profile-info">
+      <div>
         <img
           src={`data:image/jpeg;base64, ${userObj.userObj.profilePictureB64Base}`}
         />
