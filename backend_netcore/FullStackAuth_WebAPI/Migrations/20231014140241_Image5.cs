@@ -9,7 +9,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Image5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,6 +40,7 @@ namespace FullStackAuth_WebAPI.Migrations
                     FirstName = table.Column<string>(type: "longtext", nullable: true),
                     LastName = table.Column<string>(type: "longtext", nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ImageData = table.Column<string>(type: "longtext", nullable: true),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true),
@@ -231,6 +232,8 @@ namespace FullStackAuth_WebAPI.Migrations
                     Text = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
                     TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
+                    EditedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsEdited = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     AuthorOfTopicId = table.Column<string>(type: "varchar(255)", nullable: true)
                 },
                 constraints: table =>
@@ -253,6 +256,8 @@ namespace FullStackAuth_WebAPI.Migrations
                     Text = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true),
                     TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
+                    EditedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsEdited = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CommentOfUserId = table.Column<string>(type: "varchar(255)", nullable: true),
                     TopicId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -278,8 +283,8 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "9783eb83-329d-4781-b79c-5e0024c0fde0", null, "User", "USER" },
-                    { "9c2d77e9-6c44-46da-b44f-6ea0af3a961d", null, "Admin", "ADMIN" }
+                    { "21c320b6-8c41-482c-b9b9-fd4a0fb82db9", null, "User", "USER" },
+                    { "f909dc05-b138-4b2b-b2f5-ff264e6f79f1", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

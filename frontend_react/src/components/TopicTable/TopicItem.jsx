@@ -12,6 +12,7 @@ const TopicItem = ({ topicObject }) => {
     "MM/DD/YYYY"
   );
 
+  console.log(topicObject);
   // // handle topics likes
   const handleTopicLikes = async (e) => {
     try {
@@ -41,6 +42,10 @@ const TopicItem = ({ topicObject }) => {
 
         <td>
           <Link to={`/profile/${topicObject.authorOfTopic.id}`}>
+            <img
+              className="icon-image-small"
+              src={`data:image/jpeg;base64, ${topicObject.authorOfTopic.profilePictureB64Base}`}
+            />
             {topicObject.authorOfTopic.userName}
           </Link>
         </td>

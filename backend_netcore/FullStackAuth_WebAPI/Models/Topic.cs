@@ -8,10 +8,10 @@ namespace FullStackAuth_WebAPI.Models
         [Key]
         public int TopicId { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(30)]
         public string Title { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(5000)]
         public string Text { get; set; }
 
         public DateTime TimePosted { get; set; }

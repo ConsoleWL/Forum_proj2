@@ -13,7 +13,9 @@ const Profile = (userObj) => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
+  const [imageData, setImageData] = useState();
 
+  console.log(userObj);
   var checkProfileIsAuthorizedUser = user.id === userObj.userObj.id;
 
   const handleUpdateButton = async (e) => {
@@ -28,14 +30,26 @@ const Profile = (userObj) => {
     firstName,
     lastName,
     email,
+    file: imageData,
   };
+
+  const formData = new FormData();
+  formData.append("file", imageData);
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName);
+  formData.append("email", email);
+
+  function handleImageChange(e) {
+    setImageData(e.target.files[0]);
+    console.log(e.target.files);
+  }
   // update profile
   const handleUpdateProfile = async (e) => {
     try {
       e.preventDefault();
       const response = await axios.put(
         `https://localhost:5001/api/user/`,
-        updateUser,
+        formData,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -49,61 +63,79 @@ const Profile = (userObj) => {
   };
 
   return (
-    <div className="profile">
-      <h3>username: {userObj.userObj.userName}</h3>
-      <h5>first name: {userObj.userObj.firstName}</h5>
-      <h5>lastname: {userObj.userObj.lastName}</h5>
-      <h5>email: {userObj.userObj.email}</h5>
-      <div>Registered: {shortDateFormat}</div>
+    <div className="profile profile-info profile-container">
+      <div>
+        <h3>username: {userObj.userObj.userName}</h3>
+        <h5>first name: {userObj.userObj.firstName}</h5>
+        <h5>lastname: {userObj.userObj.lastName}</h5>
+        <h5>email: {userObj.userObj.email}</h5>
+        <div>Registered: {shortDateFormat}</div>
 
-      {isEditing ? (
-        <div className="profile">
-          <form onSubmit={handleUpdateProfile}>
-            <label>FirtName</label>
-            <br />
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            ></input>
-            <br />
-            <label>Lastname</label>
-            <br />
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            ></input>
-            <br />
-            <label>Email</label>
-            <br />
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <br />
-            <br />
-            <div>
-              <button type="submit" className="btn btn-primary btn-block mb-4">
-                Save
+        {isEditing ? (
+          <div className="profile">
+            <form onSubmit={handleUpdateProfile}>
+              <label>FirtName</label>
+              <br />
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              ></input>
+              <br />
+              <label>Lastname</label>
+              <br />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              ></input>
+              <br />
+              <label>Email</label>
+              <br />
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+              <br />
+              <label className="form-label">Default file input example</label>
+              <input
+                className="form-control"
+                type="file"
+                onChange={handleImageChange}
+              />
+              <br />
+              <div>
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block mb-4"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+            <div className="mb-3"></div>
+          </div>
+        ) : null}
+
+        <div className="d-flex justify-content-start profile">
+          <div className="update-delete">
+            {checkProfileIsAuthorizedUser && !isEditing ? (
+              <button
+                onClick={handleUpdateButton}
+                className="btn btn-primary btn-block mb-4"
+              >
+                Update
               </button>
-            </div>
-          </form>
+            ) : null}
+          </div>
         </div>
-      ) : null}
+      </div>
 
-      <div className="d-flex justify-content-start profile">
-        <div className="update-delete">
-          {checkProfileIsAuthorizedUser && !isEditing ? (
-            <button
-              onClick={handleUpdateButton}
-              className="btn btn-primary btn-block mb-4"
-            >
-              Update
-            </button>
-          ) : null}
-        </div>
+      <div className="profile-info">
+        <img
+          src={`data:image/jpeg;base64, ${userObj.userObj.profilePictureB64Base}`}
+        />
       </div>
     </div>
   );

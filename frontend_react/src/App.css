@@ -17,6 +17,12 @@ p {
   font-size: 20px;
 }
 
+.icon-image-small{
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+  border-radius: 50px;
+}
 
 
 button:hover {
@@ -125,4 +131,19 @@ table.dable{
 
 .whitebite{
   color: white;
+}
+
+.profile-container{
+  display: flex;
+}
+
+.profile-info img{
+  margin: 10px 100px;
+  height: 200px;
+  width:  200px;
+  object-fit:cover;
+}
+
+.profile-topic{
+  padding: 10 90px;
 }

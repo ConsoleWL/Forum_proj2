@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullStackAuth_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231012181101_AddEditing")]
-    partial class AddEditing
+    [Migration("20231014140241_Image5")]
+    partial class Image5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,6 +172,9 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImageData")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
@@ -251,13 +254,13 @@ namespace FullStackAuth_WebAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aae4b4c9-26cd-445c-a050-40fee8255165",
+                            Id = "21c320b6-8c41-482c-b9b9-fd4a0fb82db9",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ae79a173-f512-47b0-9c05-00545980110d",
+                            Id = "f909dc05-b138-4b2b-b2f5-ff264e6f79f1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

@@ -26,6 +26,8 @@ const Topic = ({ topicItem }) => {
     text,
   };
 
+  console.log(topicItem);
+
   // update topic
   const handleUpdateTopic = async (e) => {
     try {
@@ -67,10 +69,17 @@ const Topic = ({ topicItem }) => {
 
   return (
     <div>
-      <div className="profile">
-        <h3>Author: {topicItem.authorOfTopic.userName}</h3>
-        <div>PublishedDate: {shortDateFormat}</div>
-        <div>Likes: {topicItem.likes}</div>
+      <div className="profile profile-info profile-container">
+        <div className="profile profile-info">
+          <h3>Author: {topicItem.authorOfTopic.userName}</h3>
+          <div>PublishedDate: {shortDateFormat}</div>
+          <div>Likes: {topicItem.likes}</div>
+        </div>
+        <div className="profile-info">
+          <img
+            src={`data:image/jpeg;base64, ${topicItem.authorOfTopic.profilePictureB64Base}`}
+          />
+        </div>
       </div>
 
       {isEditing ? (
@@ -102,9 +111,9 @@ const Topic = ({ topicItem }) => {
           </form>
         </div>
       ) : (
-        <div className="profile">
+        <div className="profile profile-topic">
           <h3>{topicItem.title}</h3>
-          <p>Text: {topicItem.text}</p>
+          <p> {topicItem.text}</p>
         </div>
       )}
 

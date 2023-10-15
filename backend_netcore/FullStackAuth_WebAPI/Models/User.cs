@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FullStackAuth_WebAPI.Models
 {
@@ -7,6 +8,14 @@ namespace FullStackAuth_WebAPI.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime RegistrationDate { get; set; }
+
+        //public IFormFile ProilePicture { get; set; }
+        public string? ImageData { get; set; }
+
+        [NotMapped]
+        public IFormFile File { get; set; }
+
+
 
         //Nav props
 

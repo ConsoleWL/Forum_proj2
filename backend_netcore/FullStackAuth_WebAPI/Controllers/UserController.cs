@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Security.Claims;
 
 namespace FullStackAuth_WebAPI.Controllers
@@ -71,6 +73,7 @@ namespace FullStackAuth_WebAPI.Controllers
                     LastName = user.LastName,
                     Email = user.Email,
                     RegistrationDate = user.RegistrationDate.ToString("yyyy-MM-dd"),
+                    ProfilePictureB64Base = user.ImageData,
                     Topics = topics.Select(t => new TopicForDisplayDto
                     {
                         TopicId = t.TopicId,
@@ -94,12 +97,13 @@ namespace FullStackAuth_WebAPI.Controllers
                         IsEdited = c.IsEdited,
                         EditedDate = c.EditedDate,
                         CommentOfUser = new UserForDisplayDto
-                        {   
+                        {
                             Id = c.CommentOfUser.Id,
                             UserName = c.CommentOfUser.UserName
                         },
                     }).ToList()
                 };
+
 
                 return Ok(userDto);
 
@@ -112,7 +116,7 @@ namespace FullStackAuth_WebAPI.Controllers
         }
 
         [HttpPut, Authorize]
-        public IActionResult UpdateUser([FromBody] User user)
+        public IActionResult UpdateUser([FromForm] User user)
         {
             try
             {
@@ -128,6 +132,18 @@ namespace FullStackAuth_WebAPI.Controllers
                 existUser.FirstName = user.FirstName;
                 existUser.Email = user.Email;
 
+                if (user.File != null)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        user.File.CopyTo(memoryStream);
+                        using (var image = Image.FromStream(memoryStream, true))
+                        {
+                            existUser.ImageData = ImageBase64Encode(image);
+                        }
+                    }
+                }
+
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
@@ -138,6 +154,23 @@ namespace FullStackAuth_WebAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        private string ImageBase64Encode(Image img)
+        {
+            using (Image image = img)
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, ImageFormat.Jpeg);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    string base64String = Convert.ToBase64String(imageBytes);
+                    return base64String;
+                }
             }
         }
 

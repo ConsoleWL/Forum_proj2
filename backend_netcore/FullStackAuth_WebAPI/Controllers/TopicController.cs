@@ -37,10 +37,12 @@ namespace FullStackAuth_WebAPI.Controllers
                     IsEdited = t.IsEdited,
                     EditedDate = t.EditedDate,
                     Likes = t.Likes,
+
                     AuthorOfTopic = new UserForDisplayDto
                     {
                         Id = t.AuthorOfTopic.Id,
-                        UserName = t.AuthorOfTopic.UserName
+                        UserName = t.AuthorOfTopic.UserName,
+                        ProfilePictureB64Base = t.AuthorOfTopic.ImageData
                     }
                     
                 }).ToList();
@@ -77,7 +79,8 @@ namespace FullStackAuth_WebAPI.Controllers
                     AuthorOfTopic = new UserForDisplayDto
                     {
                         Id = topic.AuthorOfTopic.Id,
-                        UserName = topic.AuthorOfTopic.UserName
+                        UserName = topic.AuthorOfTopic.UserName,
+                        ProfilePictureB64Base = topic.AuthorOfTopic.ImageData
                     },
                     Comments = topic.Comments.Select(c => new CommentForDisplayDto
                     {
