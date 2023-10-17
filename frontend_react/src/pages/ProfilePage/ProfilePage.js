@@ -29,10 +29,14 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
-      <Profile userObj={userObj} />
-      <SendMessage userObj={userObj} />
+    <div className="profile-page">
+      <div className="profile-chat">
+        <Profile userObj={userObj} />
+        <SendMessage userObj={userObj} />
+      </div>
+      <h3 className="profile-titles">Your topics</h3>
       <TopicTable topics={userObj.topics} isProfilePage={true} />
+      <h3 className="profile-titles">Your comments</h3>
       <CommentsTable topicReviews={userObj.comments} isProfilePage={true} />
     </div>
   );

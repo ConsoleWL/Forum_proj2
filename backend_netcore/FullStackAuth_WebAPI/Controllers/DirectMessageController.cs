@@ -4,6 +4,7 @@ using FullStackAuth_WebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using static FullStackAuth_WebAPI.Models.DirectMessage;
 
@@ -35,13 +36,14 @@ namespace FullStackAuth_WebAPI.Controllers
                 //.Select(u => u.FromUserId).Distinct()
                 var usersIdList = usersWithMessages.Select(u => u.FromUserId).Distinct().ToList();
                 usersIdList.AddRange(usersWithMessages.Select(u => u.ToUserId).Distinct().ToList());
-                usersIdList.Remove(userId);
+                usersIdList.RemoveAll(u=> u == userId);
 
                 var userList = _context.Users.Where(u => usersIdList.Contains(u.Id)).ToList();
                 var userswithMessgesDTO = userList.Select(u => new UserForDisplayDto
                 {
                     Id = u.Id,
                     UserName = u.UserName,
+                    
                 }).ToList();
 
                 //return Ok(userswithMessgesDTO);
@@ -63,9 +65,8 @@ namespace FullStackAuth_WebAPI.Controllers
                     return Unauthorized();
 
 
-                var myMessages = _context.DirectMessages.Where(ufrom => ufrom.FromUserId == userId && ufrom.ToUserId == userFromId).ToList();
-
-                var userMessages = _context.DirectMessages.Where(ufrom => ufrom.ToUserId == userId && ufrom.FromUserId == userFromId).ToList();
+                var myMessages = _context.DirectMessages.Include(m=>m.FromUser).Where(ufrom => ufrom.FromUserId == userId && ufrom.ToUserId == userFromId).ToList();
+                var userMessages = _context.DirectMessages.Include(m => m.FromUser).Where(ufrom => ufrom.ToUserId == userId && ufrom.FromUserId == userFromId).ToList();
 
                 myMessages.AddRange(userMessages);
 
@@ -79,13 +80,18 @@ namespace FullStackAuth_WebAPI.Controllers
                     FromUserId = m.FromUserId,
                     ToUser = new UserForDisplayDto
                     {
-                        UserName = _context.Users.FirstOrDefault(u => u.Id == m.FromUserId).UserName
+                        //UserName = _context.Users.FirstOrDefault(u => u.Id == m.FromUserId).UserName,
+                        
+                        UserName = m.ToUser != null ? m.ToUser.UserName : string.Empty,
+                        ProfilePictureB64Base = m.ToUser != null ? m.ToUser.ImageData : string.Empty,
                     },
                    
                     ToUserId = m.ToUserId,
                     FromUser = new UserForDisplayDto
                     {
-                        UserName = _context.Users.FirstOrDefault(u => u.Id == m.ToUserId).UserName
+                        //UserName = _context.Users.FirstOrDefault(u => u.Id == m.ToUserId).UserName
+                        UserName = m.FromUser != null ? m.FromUser.UserName : string.Empty,
+                        ProfilePictureB64Base = m.FromUser != null ? m.FromUser.ImageData : string.Empty,
                     }
                 }).ToList();
 

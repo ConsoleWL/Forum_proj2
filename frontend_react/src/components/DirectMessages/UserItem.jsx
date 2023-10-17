@@ -5,9 +5,9 @@ const UserItem = ({ userObj, activeIndex, setActiveIndex, index }) => {
     setActiveIndex(index);
   };
   return (
-    <div className="container4">
+    <div className="usernamedivchat">
       <div onClick={handleActive}>
-        <h4 className="person">{userObj.userName}</h4>
+        <h4>{userObj.userName}</h4>
       </div>
     </div>
   );

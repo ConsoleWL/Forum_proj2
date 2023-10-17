@@ -69,24 +69,26 @@ const Topic = ({ topicItem }) => {
 
   return (
     <div>
-      <div className="profile profile-info profile-container">
-        <div className="profile profile-info">
-          <h3>Author: {topicItem.authorOfTopic.userName}</h3>
-          <div>PublishedDate: {shortDateFormat}</div>
-          <div>Likes: {topicItem.likes}</div>
-        </div>
-        <div className="profile-info">
+      <div className="topic-page-profile profile-container">
+        <div className="profile-info-topic">
           <img
             src={`data:image/jpeg;base64, ${topicItem.authorOfTopic.profilePictureB64Base}`}
           />
         </div>
+        <div className="profile information">
+          <h5>Author: {topicItem.authorOfTopic.userName}</h5>
+          <h5>Likes: {topicItem.likes}</h5>
+          <p>Published: {shortDateFormat}</p>
+        </div>
       </div>
 
       {isEditing ? (
-        <div className="profile">
+        <div>
           <form onSubmit={handleUpdateTopic}>
-            <label>Title</label>
-            <br />
+            <div className="titleOfTopic">
+              <br />
+              <label>Title</label>
+            </div>
             <input
               type="text"
               value={title}
@@ -97,44 +99,39 @@ const Topic = ({ topicItem }) => {
             <label>Text</label>
             <br />
             <textarea
+              className="topic-textarea"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              rows="5"
-              cols="70"
+              rows="6"
+              cols="175"
             ></textarea>
             <br />
             <div>
-              <button type="submit" className="btn btn-primary btn-block mb-4">
+              <button type="submit" className="button-new">
                 Save
               </button>
             </div>
           </form>
         </div>
       ) : (
-        <div className="profile profile-topic">
+        <div className="topic-container-div">
           <h3>{topicItem.title}</h3>
           <p> {topicItem.text}</p>
         </div>
       )}
 
-      <div className="d-flex justify-content-start profile">
-        <div className="update-delete">
+      <div className="profile-update-delete">
+        <div>
           {checkProfileIsAuthorizedUser && !isEditing ? (
-            <button
-              onClick={handleUpdateButton}
-              className="btn btn-primary btn-block mb-4"
-            >
+            <button onClick={handleUpdateButton} className="button-new">
               Update
             </button>
           ) : null}
         </div>
 
-        <div className="update-delete">
+        <div>
           {checkProfileIsAuthorizedUser ? (
-            <button
-              onClick={handleDeleteTopic}
-              className="btn btn-primary btn-block mb-4"
-            >
+            <button onClick={handleDeleteTopic} className="button-new">
               Delete
             </button>
           ) : null}

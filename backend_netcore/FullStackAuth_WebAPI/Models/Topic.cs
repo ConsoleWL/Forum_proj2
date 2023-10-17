@@ -11,7 +11,7 @@ namespace FullStackAuth_WebAPI.Models
         [MaxLength(30)]
         public string Title { get; set; }
 
-        [MaxLength(5000)]
+        [MaxLength(10000)]
         public string Text { get; set; }
 
         public DateTime TimePosted { get; set; }

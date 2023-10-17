@@ -9,7 +9,12 @@ const ListOfUsers = ({ users = [], activeIndex, setActiveIndex }) => {
       index={index}
     />
   ));
-  return <div>{userItem}</div>;
+  return (
+    <div>
+      <h3 className="users-h3">Users</h3>
+      <div>{userItem}</div>
+    </div>
+  );
 };
 
 export default ListOfUsers;

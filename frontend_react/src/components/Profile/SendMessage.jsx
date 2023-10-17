@@ -45,12 +45,12 @@ const SendMessage = ({ userObj }) => {
 
   return (
     <div>
-      <div className="profile">
+      <div>
         {checkProfileIsOurs ? (
           <button
             onClick={handleSendMessageButton}
             type="button"
-            className="btn btn-primary btn-block mb-4 profile-btn"
+            className="button-new"
           >
             Send
           </button>
@@ -58,8 +58,8 @@ const SendMessage = ({ userObj }) => {
       </div>
 
       {messageBox ? (
-        <div class="d-flex flex-column mb-3 profile">
-          <form onSubmit={handleSendMessage}>
+        <div>
+          <form onSubmit={handleSendMessage} className="send-message-form">
             <div>
               <textarea
                 value={messageText}
@@ -70,7 +70,7 @@ const SendMessage = ({ userObj }) => {
               ></textarea>
             </div>
             <div>
-              <button type="submit" className="btn btn-primary btn-block mb-4">
+              <button type="submit" className="button-new">
                 SendMessage
               </button>
             </div>

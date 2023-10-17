@@ -24,6 +24,33 @@ p {
   border-radius: 50px;
 }
 
+.containerlog  {
+  margin: 0 auto;
+  max-width: 600px;
+  overflow: auto;
+  text-align: center;
+  padding-top: 200px ;
+}
+
+
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.form input {
+  display: block;
+  width: 100%;
+  height: 25px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+}
+
+
 /* 
 button:hover {
   cursor: pointer;
@@ -32,6 +59,13 @@ button:hover {
 }
 
 .container {
+  margin: 0 auto;
+  max-width: 600px;
+  overflow: auto;
+  text-align: center;
+}
+
+.containerlog {
   margin: 0 auto;
   max-width: 600px;
   overflow: auto;
@@ -97,12 +131,8 @@ body {
   padding-top: 30px;
 }
 
-.profile{
-  margin: 20px 50px;
-  background-color: whitesmoke;
-  padding: 20px 20px;
-  
-}
+ 
+
 
 table.dable{
   margin: 0px 50px 50px 50px;
@@ -133,7 +163,7 @@ table.dable{
   color: white;
 }
 
-.profile-container{
+.profile-container, .update-form, .profile-chat, .topic-page, .topic-page-profile, .profile-update-delete{
   display: flex;
 }
 
@@ -142,6 +172,12 @@ table.dable{
   height: 200px;
   width:  200px;
   object-fit:cover;
+}
+
+.profile-info-topic img{
+  height: 250px;
+    width: 250px;
+    object-fit: cover;
 }
 
 .profile-topic{
@@ -155,6 +191,7 @@ table.dable{
 
 }
 
+/* button */
 .button-new{
   padding: 7px 10px;
   background-color: #333;
@@ -189,4 +226,190 @@ color: #333;
 
 .like{
   width: 55px;
+}
+
+.profile-page{
+  margin: 100px 50px;
+}
+
+.profile-container{
+  gap: 50px;
+}
+
+.profile{
+padding-bottom: 50px;
+
+}
+
+.image img{
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.information h5{
+  margin-bottom: 25px;
+}
+
+.send-message-form div{
+  padding-top: 10px;
+}
+
+.profile-titles{
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #333;
+  color: whitesmoke;
+  border: #333 solid 1px;
+}
+
+.textarea-comment{
+  padding: 10;
+}
+
+.profile-update-delete{
+  gap: 5px;
+  justify-content: right;
+}
+
+.topic-container-div{
+  margin-top: 15px;
+  
+}
+
+.topic-container-div h3{
+  text-align: center;
+  background-color: #333;
+  color: white;
+}
+
+.topic-container-div p {
+  font-family: sans-serif;
+  font-size: 20pt;
+  border: 1px solid #333;
+  padding: 10px 15px;
+}
+
+.topic-textarea{
+  padding: 15px;
+  border: 1px solid #333;
+}
+
+.comment-textarea{
+  padding: 5px;
+}
+
+.comment-div{
+  display: block;
+  justify-content: right;
+  padding: 0 25px;
+}
+
+/* direct messages */
+
+.direct-message-page-div{
+  padding: 20px 20px;
+  display: flex;
+}
+
+
+/* Chat containers */
+.containerChat {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 700px;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.containerChat::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style images */
+.containerChat img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+/* Style the right image */
+.containerChat img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.direct-message-page-div{
+padding-top: 100px;
+gap: 150px;
+padding-left: 100px;
+}
+
+.listofUsers{
+  padding: 12px;
+  
+}
+
+.listofUsers2{
+  
+}
+
+/* usernamesin chat */
+
+
+.usernamedivchat{
+  background-color:  #ccc;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #999;
+  border-radius: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.messages-h3{
+  padding-top: 10px;
+  text-align: center;
+  background-color: #333;
+  color: whitesmoke;
+  padding-bottom: 10px;
+  border-radius: 5px;
+}
+
+.users-h3{
+  text-align: center;
+  background-color: #333;
+  color: whitesmoke;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: -10px;
+  border-radius: 5px;
 }

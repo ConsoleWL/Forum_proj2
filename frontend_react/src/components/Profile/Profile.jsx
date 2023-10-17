@@ -64,64 +64,74 @@ const Profile = (userObj) => {
 
   return (
     <div>
-      <div>
-        <h3>username: {userObj.userObj.userName}</h3>
-        <h5>first name: {userObj.userObj.firstName}</h5>
-        <h5>lastname: {userObj.userObj.lastName}</h5>
-        <h5>email: {userObj.userObj.email}</h5>
-        <div>Registered: {shortDateFormat}</div>
-
-        {isEditing ? (
-          <div>
-            <form onSubmit={handleUpdateProfile}>
-              <label>FirtName</label>
-              <br />
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              ></input>
-              <br />
-              <label>Lastname</label>
-              <br />
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              ></input>
-              <br />
-              <label>Email</label>
-              <br />
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-              <br />
-              <label>Default file input example</label>
-              <input type="file" onChange={handleImageChange} />
-              <br />
-              <div>
-                <button type="submit">Save</button>
-              </div>
-            </form>
-            <div></div>
-          </div>
-        ) : null}
-
-        <div>
-          <div>
-            {checkProfileIsAuthorizedUser && !isEditing ? (
-              <button onClick={handleUpdateButton}>Update</button>
-            ) : null}
-          </div>
+      <div className="profile-container">
+        <div className="profile image">
+          <img
+            src={`data:image/jpeg;base64, ${userObj.userObj.profilePictureB64Base}`}
+          />
         </div>
-      </div>
 
-      <div>
-        <img
-          src={`data:image/jpeg;base64, ${userObj.userObj.profilePictureB64Base}`}
-        />
+        <div className="profile information">
+          <h5>Username: {userObj.userObj.userName}</h5>
+          <h5>First Name: {userObj.userObj.firstName}</h5>
+          <h5>Lastname: {userObj.userObj.lastName}</h5>
+          <h5>Email: {userObj.userObj.email}</h5>
+          <p>Registered: {shortDateFormat}</p>
+        </div>
+
+        <div className="profile-container">
+          {isEditing ? (
+            <div>
+              <form className="update-form" onSubmit={handleUpdateProfile}>
+                <div>
+                  <label>FirtName</label>
+                  <br />
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  ></input>
+                  <br />
+                  <label>Lastname</label>
+                  <br />
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  ></input>
+                  <br />
+                  <label>Email</label>
+                  <br />
+                  <input
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  ></input>
+                  <br />
+                  <label>Picture</label>
+                  <br />
+                  <input type="file" onChange={handleImageChange} />
+                  <br />
+                </div>
+
+                <div>
+                  <button className="button-new" type="submit">
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+              <div></div>
+            </div>
+          ) : null}
+        </div>
+
+        <div className="profile information">
+          {checkProfileIsAuthorizedUser && !isEditing ? (
+            <button className="button-new" onClick={handleUpdateButton}>
+              Update Profile
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

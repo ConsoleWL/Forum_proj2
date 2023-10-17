@@ -28,12 +28,12 @@ const TopicPage = () => {
   };
 
   return (
-    <div>
+    <div className="profile-page">
       <div>{topicItem && <Topic topicItem={topicItem} />}</div>
       <div>
         {topicItem && <CommentsTable topicReviews={topicItem.comments} />}
       </div>
-      <div className="profile">
+      <div className="profile comment-div">
         <AddComment text={text} setText={setText} topicId={topicId} />
       </div>
     </div>

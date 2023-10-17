@@ -85,30 +85,48 @@ const CommentItem = ({ comment, isProfilePage }) => {
   // format dates
   const shortDateFormat = dayjs(comment.timePosted).format("MM/DD/YYYY");
   return (
-    <tr className="comment-section">
+    <tr>
       <td>
         <p>{comment.text}</p>
+        {isEditing ? (
+          <td>
+            <form onSubmit={handleCommentText}>
+              <div>
+                <textarea
+                  className="textarea-comment"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+              </div>
+
+              <button type="submit" className="button-new">
+                Save
+              </button>
+            </form>
+          </td>
+        ) : null}
       </td>
 
       <td>
-        <Link to={`/profile/${comment.commentOfUser.id}`}>
+        <Link
+          className="title-name"
+          to={`/profile/${comment.commentOfUser.id}`}
+        >
           {!isProfilePage ? (
             <img
               className="icon-image-small"
               src={`data:image/jpeg;base64, ${comment.commentOfUser.profilePictureB64Base}`}
             />
           ) : null}
-          <p>{comment.commentOfUser.userName}</p>
+          <span className="author-name author-name-small">
+            {comment.commentOfUser.userName}
+          </span>
         </Link>
       </td>
       <td>{shortDateFormat}</td>
       <td>{comment.isEdited ? shortDateFormatComment : null}</td>
-      <td>{comment.likes}</td>
       <td>
-        <button
-          onClick={handleCommentLikes}
-          className="btn btn-primary btn-block mb-4"
-        >
+        <button onClick={handleCommentLikes} className="button-new like">
           {" "}
           {comment.likes}{" "}
         </button>
@@ -118,27 +136,10 @@ const CommentItem = ({ comment, isProfilePage }) => {
           <button
             type="button"
             onClick={handleDeleteComment}
-            className="btn btn-primary btn-block mb-4"
+            className="button-new "
           >
             Delete
           </button>
-        </td>
-      ) : null}
-
-      {isEditing ? (
-        <td>
-          <form onSubmit={handleCommentText} className="commentform">
-            <label>Text</label>
-
-            <textarea
-              className="texttextarea"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-            <button type="submit" className="btn btn-primary btn-block mb-4">
-              Save
-            </button>
-          </form>
         </td>
       ) : null}
 
@@ -147,7 +148,7 @@ const CommentItem = ({ comment, isProfilePage }) => {
           <button
             onClick={handleUpdateUpdate}
             type="button"
-            className="btn btn-primary btn-block mb-4"
+            className="button-new"
           >
             Update
           </button>

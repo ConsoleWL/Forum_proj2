@@ -27,21 +27,24 @@ const AddComment = ({ text, setText, topicId }) => {
     }
   };
   return (
-    <form onSubmit={handleAddComent}>
-      <div>
+    <div className="comment-div">
+      <form onSubmit={handleAddComent}>
         <div>
-          <textarea
-            rows="3"
-            cols="30"
-            onChange={(e) => setText(e.target.value)}
-            placeholder="comment"
-          />
+          <div>
+            <textarea
+              rows="3"
+              cols="30"
+              onChange={(e) => setText(e.target.value)}
+              placeholder="comment"
+              className="comment-textarea"
+            />
+          </div>
+          <button type="submit" className="button-new">
+            Add
+          </button>
         </div>
-        <button type="submit" className="btn btn-primary btn-block mb-4">
-          Add
-        </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 
