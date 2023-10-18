@@ -9,7 +9,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace FullStackAuth_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Image5 : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -228,8 +228,8 @@ namespace FullStackAuth_WebAPI.Migrations
                 {
                     TopicId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true),
-                    Text = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true),
+                    Title = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true),
+                    Text = table.Column<string>(type: "varchar(10000)", maxLength: 10000, nullable: true),
                     TimePosted = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
                     EditedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -283,9 +283,19 @@ namespace FullStackAuth_WebAPI.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "21c320b6-8c41-482c-b9b9-fd4a0fb82db9", null, "User", "USER" },
-                    { "f909dc05-b138-4b2b-b2f5-ff264e6f79f1", null, "Admin", "ADMIN" }
+                    { "00465220-57b1-43f3-acf4-62c51586b2aa", null, "User", "USER" },
+                    { "ad376a8f-9eab-4bb9-9fca-30b01540f445", null, "Admin", "ADMIN" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "ImageData", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RegistrationDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, "3a7ed84d-9552-4624-9a3f-67c3af907b7d", "admin@gmail.com", false, null, null, null, false, null, "admin@gmail.com", "ADMIN", "AQAAAAIAAYagAAAAEDdC8CF/8wN0dS04w2PfO9BUOEa3Nfa0srTFsiJuVhdc7M/Gx1J7Lz7PFP1OaNbU9g==", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", false, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "ad376a8f-9eab-4bb9-9fca-30b01540f445", "a18be9c0-aa65-4af8-bd17-00bd9344e575" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

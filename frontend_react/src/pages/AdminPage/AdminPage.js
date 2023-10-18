@@ -123,7 +123,7 @@ const AdminPage = () => {
         data={dataUser}
         options={options}
       />
-      <h3 className="chart">Comments registered daily</h3>
+      <h3 className="chart">Comments left daily</h3>
       <Chart
         chartType="Bar"
         width="100%"

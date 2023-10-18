@@ -124,7 +124,7 @@ body {
 } */
 
 .addform{
-  padding: 50px 200px;
+  padding: 100px 200px;
 }
 
 .home-page{
@@ -148,8 +148,12 @@ table.dable{
 
 .chart{
   margin: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   text-align: center;
+  background-color: #333;
+  color: whitesmoke;
+  border-radius: 10px;
+  padding-top: 10px;
 }
 .commentform{
   justify-content: space-evenly;
@@ -245,6 +249,7 @@ padding-bottom: 50px;
   height: 250px;
   width: 250px;
   object-fit: cover;
+  border-radius: 25px;
 }
 
 .information h5{
@@ -413,3 +418,6 @@ padding-left: 100px;
   margin-top: -10px;
   border-radius: 5px;
 }
+
+
+

@@ -46,6 +46,7 @@ const CreateTopic = ({}) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="form-control"
+          placeholder="Enter name of the topic"
         />
       </div>
       <div className="form-outline mb-4">
@@ -55,10 +56,11 @@ const CreateTopic = ({}) => {
           onChange={(e) => setText(e.target.value)}
           className="form-control"
           rows="4"
+          placeholder="Enter text of the topic"
         />
       </div>
       <div className="d-flex justify-content-center">
-        <button type="submit" className="btn btn-primary btn-block mb-4">
+        <button type="submit" className="button-new">
           Create
         </button>
       </div>

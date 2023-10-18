@@ -14,12 +14,13 @@ namespace FullStackAuth_WebAPI.Configuration
                 {
                     Name = "User",
                     NormalizedName = "USER"
-                },
-                new IdentityRole
-                {
-                    Name = "Admin",
-                    NormalizedName = "ADMIN"
                 }
+                //,
+                //new IdentityRole
+                //{
+                //    Name = "Admin",
+                //    NormalizedName = "ADMIN"
+                //}
             );
         }
     }
