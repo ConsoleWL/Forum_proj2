@@ -32,8 +32,8 @@ const AddComment = ({ text, setText, topicId }) => {
         <div>
           <div>
             <textarea
-              rows="3"
-              cols="30"
+              rows="5"
+              cols="60"
               onChange={(e) => setText(e.target.value)}
               placeholder="comment"
               className="comment-textarea"

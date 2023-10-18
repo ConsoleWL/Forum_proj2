@@ -11,7 +11,7 @@ const TopicItem = ({ topicObject, isProfilePage }) => {
   const shortDateFormatTopic = dayjs(topicObject.editedDate).format(
     "MM/DD/YYYY"
   );
-  console.log(isProfilePage);
+
   // // handle topics likes
   const handleTopicLikes = async (e) => {
     try {

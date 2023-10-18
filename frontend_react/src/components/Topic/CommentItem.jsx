@@ -33,7 +33,6 @@ const CommentItem = ({ comment, isProfilePage }) => {
     }
   };
 
-  console.log(comment);
   //delete comment
   const handleDeleteComment = async (e) => {
     try {
@@ -96,6 +95,8 @@ const CommentItem = ({ comment, isProfilePage }) => {
                   className="textarea-comment"
                   value={text}
                   onChange={(e) => setText(e.target.value)}
+                  rows="5"
+                  cols="60"
                 />
               </div>
 

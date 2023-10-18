@@ -16,7 +16,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [userObj]);
 
   //get user information
   const fetchUser = async () => {

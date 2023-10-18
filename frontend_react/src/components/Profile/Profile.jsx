@@ -15,7 +15,6 @@ const Profile = (userObj) => {
   const [email, setEmail] = useState();
   const [imageData, setImageData] = useState();
 
-  console.log(userObj);
   var checkProfileIsAuthorizedUser = user.id === userObj.userObj.id;
 
   const handleUpdateButton = async (e) => {
